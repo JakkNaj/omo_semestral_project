@@ -34,5 +34,4 @@ public abstract class Appliance implements ApplianceContext {
     }
 
     //todo total consumption - nulled every month
-
 }
