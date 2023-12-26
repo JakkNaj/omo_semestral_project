@@ -9,11 +9,14 @@ import java.util.List;
 
 public abstract class Appliance implements ApplianceContext {
 
+    //todo down tick wearTear each day in simulation
+    private int wearTear;
     private ApplianceState state;
     private final List<Double> consumption;
 
-    public Appliance(List<Double> consumption) {
+    public Appliance(List<Double> consumption, int wearTear) {
         this.consumption = consumption;
+        this.wearTear = wearTear;
         this.state = new OffState();
     }
 
@@ -50,6 +53,14 @@ public abstract class Appliance implements ApplianceContext {
     @Override
     public void turnIdle() {
         this.setState(new IdleState());
+    }
+
+
+    //use each day on appliance tick
+    public void wearOff(){
+        wearTear--;
+        if (wearTear == 0)
+            this.setState(new BrokenState());
     }
 
     //todo total consumption - nulled every month

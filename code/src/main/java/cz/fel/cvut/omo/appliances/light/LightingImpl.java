@@ -7,6 +7,6 @@ import java.util.List;
 public class LightingImpl extends Appliance implements Lighting {
 
     public LightingImpl(List<Double> consumption) {
-        super(consumption);
+        super(consumption, 180);
     }
 }

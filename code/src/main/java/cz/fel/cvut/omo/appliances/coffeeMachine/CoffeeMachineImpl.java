@@ -11,7 +11,7 @@ public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
     private double waterRatio;
 
     public CoffeeMachineImpl(List<Double> consumption) {
-        super(consumption);
+        super(consumption, 620);
     }
 
     @Override
