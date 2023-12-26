@@ -2,6 +2,7 @@ package cz.fel.cvut.omo.house;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.fel.cvut.omo.events.Event;
+import lombok.Getter;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class House {
 
     private final List<Event> events = new ArrayList<>();
 
+    @Getter
     private final List<Floor> floors = new ArrayList<>();
 
     private House(){}
