@@ -14,6 +14,8 @@ public abstract class Creature implements CreatureInterface {
 
     private int age = 0;
 
+    private boolean sleeping = false;
+
     @Override
     public void age() {
         age++;
@@ -22,5 +24,9 @@ public abstract class Creature implements CreatureInterface {
     @Override
     public void die() {
         alive = false;
+    }
+
+    public void sleep() {
+        sleeping = true;
     }
 }

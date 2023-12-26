@@ -16,10 +16,12 @@ public class Room {
 
     private int temperature;
 
+    @Getter
     private final List<Creature> creatures;
 
     private final List<Door> doors;
 
+    @Getter
     private final List<Window> windows;
 
     public Room(String name) {

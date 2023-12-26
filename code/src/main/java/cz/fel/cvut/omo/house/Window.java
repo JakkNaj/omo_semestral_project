@@ -4,8 +4,8 @@ import lombok.Getter;
 
 import static java.time.LocalTime.now;
 
+@Getter
 public class Window {
-    @Getter
     private final int id;
 
     private Blinds blinds;
