@@ -1,6 +1,7 @@
 package cz.fel.cvut.omo.appliances;
 
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import cz.fel.cvut.omo.appliances.states.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,21 +38,37 @@ public abstract class Appliance implements ApplianceContext {
 
     @Override
     public void turnOn() {
+        //don't turn on when appliance broken
+        if (this.state instanceof BrokenState)
+            return;
         this.setState(new OnState());
     }
 
     @Override
     public void turnOff() {
+        //don't change state when broken
+        if (this.state instanceof BrokenState)
+            return;
         this.setState(new OffState());
     }
 
+    //todo after appliance broken, some person has to repair it
     @Override
     public void turnBroken() {
         this.setState(new BrokenState());
     }
 
     @Override
+    public void repair() {
+        if (this.state instanceof BrokenState)
+            this.setState(new IdleState());
+    }
+
+    @Override
     public void turnIdle() {
+        //don't change state when broken
+        if (this.state instanceof BrokenState)
+            return;
         this.setState(new IdleState());
     }
 

@@ -15,5 +15,7 @@ public interface ApplianceContext {
 
     void turnBroken();
 
+    void repair();
+
     void turnIdle();
 }

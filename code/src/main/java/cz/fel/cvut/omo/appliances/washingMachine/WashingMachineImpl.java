@@ -19,4 +19,6 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
         return loaded;
     }
 
+
+
 }
