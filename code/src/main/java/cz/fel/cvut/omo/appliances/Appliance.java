@@ -1,8 +1,7 @@
 package cz.fel.cvut.omo.appliances;
 
 
-import cz.fel.cvut.omo.appliances.states.ApplianceState;
-import cz.fel.cvut.omo.appliances.states.OffState;
+import cz.fel.cvut.omo.appliances.states.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +30,26 @@ public abstract class Appliance implements ApplianceContext {
     @Override
     public List<Double> getConsumption() {
         return state.getConsumption(consumption);
+    }
+
+    @Override
+    public void turnOn() {
+        this.setState(new OnState());
+    }
+
+    @Override
+    public void turnOff() {
+        this.setState(new OffState());
+    }
+
+    @Override
+    public void turnBroken() {
+        this.setState(new BrokenState());
+    }
+
+    @Override
+    public void turnIdle() {
+        this.setState(new IdleState());
     }
 
     //todo total consumption - nulled every month
