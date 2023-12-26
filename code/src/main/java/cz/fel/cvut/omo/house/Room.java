@@ -1,7 +1,9 @@
 package cz.fel.cvut.omo.house;
 
 import cz.fel.cvut.omo.creature.Creature;
+import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,10 +11,29 @@ import java.util.List;
  */
 public class Room {
 
-    private String name;
+    @Getter
+    private final String name;
 
     private int temperature;
 
-    private List<Creature> creatures;
+    private final List<Creature> creatures;
 
+    private final List<Door> doors;
+
+    private final List<Window> windows;
+
+    public Room(String name) {
+        doors = new ArrayList<>();
+        creatures = new ArrayList<>();
+        windows = new ArrayList<>();
+        this.name = name;
+    }
+
+    public void addDoor(Door door){
+        doors.add(door);
+    }
+
+    public void addWindow(Window window){
+        windows.add(window);
+    }
 }

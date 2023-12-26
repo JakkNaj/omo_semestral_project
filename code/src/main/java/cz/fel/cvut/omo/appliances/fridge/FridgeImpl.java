@@ -1,0 +1,28 @@
+package cz.fel.cvut.omo.appliances.fridge;
+
+import cz.fel.cvut.omo.appliances.Appliance;
+
+import java.util.List;
+
+public class FridgeImpl extends Appliance implements Fridge{
+
+    private List<FridgeItem> items;
+    public FridgeImpl(List<Double> consumption) {
+        super(consumption);
+    }
+
+    @Override
+    public List<FridgeItem> getItems() {
+        return items;
+    }
+
+    @Override
+    public void putItem() {
+
+    }
+
+    @Override
+    public void takeItem() {
+
+    }
+}
