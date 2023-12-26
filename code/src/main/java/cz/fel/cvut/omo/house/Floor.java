@@ -24,4 +24,17 @@ public class Floor {
         this.rooms = new ArrayList<>();
         this.level = level;
     }
+
+    public void addRoom(Room room){
+        rooms.add(room);
+    }
+
+    public Room getRoom(String name){
+        for(Room room : rooms){
+            if(room.getName().equals(name)){
+                return room;
+            }
+        }
+        throw new IllegalArgumentException("no room called " + name);
+    }
 }
