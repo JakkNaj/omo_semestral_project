@@ -8,7 +8,7 @@ public class FridgeImpl extends Appliance implements Fridge{
 
     private List<FridgeItem> items;
     public FridgeImpl(List<Double> consumption) {
-        super(consumption);
+        super(consumption, 1860);
     }
 
     @Override
@@ -17,12 +17,12 @@ public class FridgeImpl extends Appliance implements Fridge{
     }
 
     @Override
-    public void putItem() {
-
+    public void putItem(FridgeItem fridgeItem) {
+        items.add(fridgeItem);
     }
 
     @Override
-    public void takeItem() {
-
+    public void takeItem(FridgeItem fridgeItem) {
+        items.remove(fridgeItem);
     }
 }

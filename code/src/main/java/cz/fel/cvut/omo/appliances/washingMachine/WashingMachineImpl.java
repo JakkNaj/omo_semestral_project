@@ -11,7 +11,7 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
     private boolean loaded;
 
     public WashingMachineImpl(List<Double> consumption) {
-        super(consumption);
+        super(consumption, 360);
     }
 
     @Override
@@ -19,4 +19,12 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
         return loaded;
     }
 
+    @Override
+    public void load() {
+        loaded = true;
+    }
+
+    public void wash() {
+        loaded = false;
+    }
 }

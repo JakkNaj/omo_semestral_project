@@ -7,7 +7,7 @@ import java.util.List;
 public interface Fridge extends ApplianceContext {
     List<FridgeItem> getItems();
 
-    void putItem();
+    void putItem(FridgeItem fridgeItem);
 
-    void takeItem();
+    void takeItem(FridgeItem fridgeItem);
 }

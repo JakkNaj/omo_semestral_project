@@ -8,4 +8,14 @@ public interface ApplianceContext {
     void setState(ApplianceState state);
     ApplianceState getState();
     List<Double> getConsumption();
+
+    void turnOn();
+
+    void turnOff();
+
+    void turnBroken();
+
+    void repair();
+
+    void turnIdle();
 }
