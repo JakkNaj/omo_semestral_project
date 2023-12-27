@@ -4,7 +4,6 @@ public interface CoffeeMachine {
     double getCoffeeRatio();
     double getWaterRation();
 
-    void makeEspresso();
-    void makeLungo();
-    void makeTurek();
+    boolean makeEspresso();
+    boolean makeTurek();
 }

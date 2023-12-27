@@ -19,6 +19,12 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
         return loaded;
     }
 
+    @Override
+    public void load() {
+        loaded = true;
+    }
 
-
+    public void wash() {
+        loaded = false;
+    }
 }

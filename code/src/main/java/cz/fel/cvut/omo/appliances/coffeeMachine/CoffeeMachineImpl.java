@@ -1,14 +1,17 @@
 package cz.fel.cvut.omo.appliances.coffeeMachine;
 
 import cz.fel.cvut.omo.appliances.Appliance;
+import cz.fel.cvut.omo.appliances.states.OnState;
 
 import java.util.List;
 
 public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
 
-    private double coffeeRatio;
+    private double coffeeRatio = 0;
 
-    private double waterRatio;
+    private double waterRatio = 0;
+
+    private CoffeeMachineStates coffeeMachineState = CoffeeMachineStates.NEEDS_COFFEE;
 
     public CoffeeMachineImpl(List<Double> consumption) {
         super(consumption, 620);
@@ -25,17 +28,44 @@ public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
     }
 
     @Override
-    public void makeEspresso() {
-
+    public boolean makeEspresso() {
+        if (this.getState() instanceof OnState &&
+            coffeeMachineState == CoffeeMachineStates.READY){
+            if (coffeeRatio >= 0.1)
+                coffeeRatio -= 0.1;
+            else {
+                coffeeMachineState = CoffeeMachineStates.NEEDS_COFFEE;
+                return false;
+            }
+            if (waterRatio >= 0.05)
+                waterRatio -= 0.05;
+            else {
+                coffeeMachineState = CoffeeMachineStates.NEEDS_WATER;
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void makeLungo() {
-
-    }
-
-    @Override
-    public void makeTurek() {
-
+    public boolean makeTurek() {
+        if (this.getState() instanceof OnState &&
+            coffeeMachineState == CoffeeMachineStates.READY){
+            if (coffeeRatio >= 0.1)
+                coffeeRatio -= 0.1;
+            else {
+                coffeeMachineState = CoffeeMachineStates.NEEDS_COFFEE;
+                return false;
+            }
+            if (waterRatio >= 0.1)
+                waterRatio -= 0.1;
+            else {
+                coffeeMachineState = CoffeeMachineStates.NEEDS_WATER;
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 }
