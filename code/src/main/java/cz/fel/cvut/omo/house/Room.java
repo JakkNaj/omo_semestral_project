@@ -1,6 +1,8 @@
 package cz.fel.cvut.omo.house;
 
+import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.creature.Creature;
+import cz.fel.cvut.omo.report.ReportVisitor;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -24,10 +26,13 @@ public class Room {
     @Getter
     private final List<Window> windows;
 
+    private final List<Appliance> appliances;
+
     public Room(String name) {
         doors = new ArrayList<>();
         creatures = new ArrayList<>();
         windows = new ArrayList<>();
+        appliances = new ArrayList<>();
         this.name = name;
     }
 
@@ -37,5 +42,15 @@ public class Room {
 
     public void addWindow(Window window){
         windows.add(window);
+    }
+
+    public void addAppliance(Appliance appliance){ appliances.add(appliance); }
+
+    public void accept(ReportVisitor reportVisitor){
+        reportVisitor.visit(this);
+        appliances.forEach(appliance -> {
+            appliance.accept(reportVisitor);
+        });
+
     }
 }

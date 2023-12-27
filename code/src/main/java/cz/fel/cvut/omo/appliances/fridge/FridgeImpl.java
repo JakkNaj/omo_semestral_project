@@ -25,4 +25,9 @@ public class FridgeImpl extends Appliance implements Fridge{
     public void takeItem(FridgeItem fridgeItem) {
         items.remove(fridgeItem);
     }
+
+    @Override
+    public String getType() {
+        return "Fridge";
+    }
 }

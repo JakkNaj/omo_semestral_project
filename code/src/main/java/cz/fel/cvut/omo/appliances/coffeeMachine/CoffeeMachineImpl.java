@@ -68,4 +68,9 @@ public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
         }
         return false;
     }
+
+    @Override
+    public String getType() {
+        return "Coffee machine";
+    }
 }

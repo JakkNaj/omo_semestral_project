@@ -8,4 +8,9 @@ public class TelevisionImpl extends Appliance implements Television{
     public TelevisionImpl(List<Double> consumption) {
         super(consumption, 1240);
     }
+
+    @Override
+    public String getType() {
+        return "Television";
+    }
 }

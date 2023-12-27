@@ -1,5 +1,6 @@
 package cz.fel.cvut.omo.house;
 
+import cz.fel.cvut.omo.report.ReportVisitor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,5 +37,12 @@ public class Floor {
             }
         }
         throw new IllegalArgumentException("no room called " + name);
+    }
+
+    public void accept(ReportVisitor reportVisitor, int i){
+        reportVisitor.visit(this, i);
+        rooms.forEach(room -> {
+            room.accept(reportVisitor);
+        });
     }
 }

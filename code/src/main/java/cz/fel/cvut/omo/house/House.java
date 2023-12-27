@@ -2,6 +2,7 @@ package cz.fel.cvut.omo.house;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.fel.cvut.omo.events.Event;
+import cz.fel.cvut.omo.report.ReportVisitor;
 import lombok.Getter;
 
 import java.io.File;
@@ -38,5 +39,12 @@ public class House {
 
     public void addFloor(Floor floor){
         floors.add(floor);
+    }
+
+    public void accept(ReportVisitor reportVisitor){
+        reportVisitor.visit(this);
+        for (int i = 0; i < floors.size(); i++){
+            floors.get(i).accept(reportVisitor, i);
+        };
     }
 }

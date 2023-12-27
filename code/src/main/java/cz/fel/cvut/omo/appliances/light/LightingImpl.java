@@ -9,4 +9,9 @@ public class LightingImpl extends Appliance implements Lighting {
     public LightingImpl(List<Double> consumption) {
         super(consumption, 180);
     }
+
+    @Override
+    public String getType() {
+        return "Light";
+    }
 }

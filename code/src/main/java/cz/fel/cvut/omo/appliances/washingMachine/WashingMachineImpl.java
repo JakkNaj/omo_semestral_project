@@ -27,4 +27,9 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
     public void wash() {
         loaded = false;
     }
+
+    @Override
+    public String getType() {
+        return "Washing machine";
+    }
 }
