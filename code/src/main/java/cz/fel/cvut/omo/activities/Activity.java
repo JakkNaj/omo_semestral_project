@@ -41,6 +41,10 @@ public class Activity {
         System.out.println(this);
     }
 
+    public boolean isFinished(){
+        return timeOfUse >= timeOfActivity;
+    }
+
     @Override
     public String toString() {
         return "Activity{" +
