@@ -8,17 +8,17 @@ import cz.fel.cvut.omo.house.Room;
 public class ReportVisitorImpl implements ReportVisitor{
     @Override
     public void visit(House house) {
-        System.out.println("Report visitor visiting house:\n");
+        System.out.println("Report visitor visiting house:");
     }
 
     @Override
     public void visit(Floor floor, int i) {
-        System.out.println("Report visitor visiting floor "+ i +":\n");
+        System.out.println("Report visitor visiting floor "+ i +":");
     }
 
     @Override
     public void visit(Room room) {
-        System.out.println("Report visitor visiting room "+ room.getName() +":\n");
+        System.out.println("Report visitor visiting room "+ room.getName() +":");
     }
 
     @Override
