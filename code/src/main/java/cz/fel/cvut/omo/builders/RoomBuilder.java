@@ -1,5 +1,6 @@
 package cz.fel.cvut.omo.builders;
 
+import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.house.Room;
 import cz.fel.cvut.omo.house.Window;
 
@@ -16,6 +17,11 @@ public class RoomBuilder {
 
     public RoomBuilder addWindow(Window window){
         room.addWindow(window);
+        return this;
+    }
+
+    public RoomBuilder addAppliance(Appliance appliance){
+        room.addAppliance(appliance);
         return this;
     }
 }
