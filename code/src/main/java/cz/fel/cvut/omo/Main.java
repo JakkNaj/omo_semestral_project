@@ -17,7 +17,7 @@ import java.util.Collections;
 
 public class Main {
 
-    private static final int ITERATIONS = 100;
+    private static final int ITERATIONS = 1000;
 
     private static final String CONFIGURATION = "houseConfig.json";
 
@@ -33,11 +33,11 @@ public class Main {
 
     private static void simulate(House house) {
         Simulation sim = new Simulation(house);
+        sim.turnOnAllDevices();
         for (int i = 0; i < ITERATIONS; i++) {
             sim.iterate();
-            System.out.println();
-            System.out.println();
         }
+        sim.getConsumptionReport();
     }
 
     private static House loadHouseFromJSON(){

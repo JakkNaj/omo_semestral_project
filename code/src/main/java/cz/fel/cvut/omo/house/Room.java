@@ -26,6 +26,7 @@ public class Room {
     @Getter
     private final List<Window> windows;
 
+    @Getter
     private final List<Appliance> appliances;
 
     public Room(String name) {
