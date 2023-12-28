@@ -37,7 +37,7 @@ public class Main {
         for (int i = 0; i < ITERATIONS; i++) {
             sim.iterate();
         }
-        sim.getConsumptionReport();
+        sim.report();
     }
 
     private static House loadHouseFromJSON(){
@@ -56,11 +56,11 @@ public class Main {
         RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room");
         RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen");
 
-        return houseBuilder.addFloor(
+        House house = houseBuilder.addFloor(
                 floorBuilder.addRoom(
                             roomBuilderLivingR.addAppliance(new TelevisionImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                     .addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
-                                    .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
+                                    .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0), 21))
                                     .build())
                             .build())
                     .addFloor(
@@ -69,10 +69,12 @@ public class Main {
                                             .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                             .addAppliance(new WashingMachineImpl(Arrays.asList(100.0, 100.0, 0.0)))
                                             .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
-                                            .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
+                                            .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0), 18))
                                             .build())
                                     .build()
                                     )
                     .build();
+
+        return house;
     }
 }

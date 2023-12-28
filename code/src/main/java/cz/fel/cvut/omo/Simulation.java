@@ -1,7 +1,9 @@
 package cz.fel.cvut.omo;
 
 import cz.fel.cvut.omo.appliances.Appliance;
+import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.house.House;
+import cz.fel.cvut.omo.objectPool.ResourcePool;
 import cz.fel.cvut.omo.report.ReportVisitorImpl;
 
 public class Simulation {
@@ -9,6 +11,10 @@ public class Simulation {
     private House house;
 
     private ReportVisitorImpl reportVisitor;
+
+    private ResourcePool<Appliance> appliancePool;
+
+    private ResourcePool<Creature> creaturePool;
 
     public Simulation(House house) {
         this.house = house;
