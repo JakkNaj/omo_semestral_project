@@ -10,6 +10,8 @@ public class HeaterImpl extends Appliance implements Heater  {
     public HeaterImpl(List<Double> consumption, int setTemperature) {
         super(consumption, 1240);
         this.setTemperature = setTemperature;
+        actions.add(this::lowerTemperature);
+        actions.add(this::upTemperature);
     }
 
     @Override
@@ -18,12 +20,12 @@ public class HeaterImpl extends Appliance implements Heater  {
     }
 
     @Override
-    public void lowerTemperature(int newTemperature){
-        setTemperature = newTemperature;
+    public void lowerTemperature(){
+        setTemperature--;
     }
 
     @Override
-    public void upTemperature(int newTemperature) {
-        setTemperature = newTemperature;
+    public void upTemperature() {
+        setTemperature++;
     }
 }

@@ -1,13 +1,13 @@
 package cz.fel.cvut.omo.appliances;
 
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import cz.fel.cvut.omo.appliances.states.*;
 import cz.fel.cvut.omo.report.ReportVisitor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
+import java.util.Random;
 
 public abstract class Appliance implements ApplianceContext {
 
@@ -17,6 +17,8 @@ public abstract class Appliance implements ApplianceContext {
     private int wearTear;
     private ApplianceState state;
     private final List<Double> consumption;
+
+    protected List<Runnable> actions;
 
     public Appliance(List<Double> consumption, int wearTear) {
         this.consumption = consumption;
@@ -91,5 +93,18 @@ public abstract class Appliance implements ApplianceContext {
 
     public String getType(){
         return "generic Appliance";
+    }
+
+    @Override
+    public void use() {
+        Runnable action = getRandomAction();
+        if (action != null)
+            action.run();
+    }
+
+    @Override
+    public Runnable getRandomAction() {
+        Random random = new Random();
+        return actions.isEmpty() ? null : actions.get(random.nextInt(actions.size()));
     }
 }

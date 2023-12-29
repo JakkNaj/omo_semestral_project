@@ -31,6 +31,7 @@ public class Activity {
     public void iterate(){
         if (timeOfUse == 0){
             appliance.turnOn();
+            appliance.use();
         } else if (timeOfUse == timeOfActivity) {
             appliance.turnOff();
         }

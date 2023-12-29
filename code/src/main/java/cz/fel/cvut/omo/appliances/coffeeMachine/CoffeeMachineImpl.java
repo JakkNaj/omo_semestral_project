@@ -13,8 +13,11 @@ public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
 
     private CoffeeMachineStates coffeeMachineState = CoffeeMachineStates.NEEDS_COFFEE;
 
+
     public CoffeeMachineImpl(List<Double> consumption) {
         super(consumption, 620);
+        actions.add(this::makeEspresso);
+        actions.add(this::makeTurek);
     }
 
     @Override

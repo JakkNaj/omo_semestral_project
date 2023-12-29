@@ -18,4 +18,8 @@ public interface ApplianceContext {
     void repair();
 
     void turnIdle();
+
+    void use();
+
+    Runnable getRandomAction();
 }
