@@ -14,8 +14,6 @@ import lombok.Setter;
 @Setter
 public class Event {
 
-
-
     private String where;
 
     private String reason;

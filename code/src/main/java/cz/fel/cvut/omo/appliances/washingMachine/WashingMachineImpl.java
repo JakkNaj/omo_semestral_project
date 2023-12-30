@@ -12,6 +12,8 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
 
     public WashingMachineImpl(List<Double> consumption) {
         super(consumption, 360);
+        actions.add(this::load);
+        actions.add(this::wash);
     }
 
     @Override

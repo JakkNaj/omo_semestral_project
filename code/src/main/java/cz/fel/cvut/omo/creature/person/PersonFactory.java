@@ -13,7 +13,19 @@ public class PersonFactory {
         return INSTANCE;
     }
 
-    public Person createPerson() {
-        return new Person();
+    public Person createBaby() {
+        return new Person(PersonType.BABY);
+    }
+
+    public Person createChild() {
+        return new Person(PersonType.CHILD);
+    }
+
+    public Person createAdult() {
+        return new Person(PersonType.ADULT);
+    }
+
+    public Person createElder() {
+        return new Person(PersonType.ELDER);
     }
 }

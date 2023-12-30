@@ -14,4 +14,9 @@ public class OnState extends ApplianceState {
         consumption.forEach(con -> outcome.add(con * consumptionRatio));
         return outcome;
     }
+
+    @Override
+    public String toString() {
+        return "state: ON";
+    }
 }
