@@ -1,7 +1,11 @@
 package cz.fel.cvut.omo.creature;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import cz.fel.cvut.omo.activities.Activity;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * Abstract class for all living beings inside the simulation
@@ -29,4 +33,5 @@ public abstract class Creature implements CreatureInterface {
     public void sleep() {
         sleeping = true;
     }
+
 }
