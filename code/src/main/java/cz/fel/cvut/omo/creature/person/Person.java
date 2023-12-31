@@ -2,9 +2,12 @@ package cz.fel.cvut.omo.creature.person;
 
 import cz.fel.cvut.omo.activities.Activity;
 import cz.fel.cvut.omo.activities.Fix;
+import cz.fel.cvut.omo.appliances.heater.Heater;
+import cz.fel.cvut.omo.appliances.heater.HeaterImpl;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.events.BrokenApplianceEvent;
 import cz.fel.cvut.omo.events.Event;
+import cz.fel.cvut.omo.events.WaterBrokeEvent;
 import cz.fel.cvut.omo.observer.Observer;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +40,10 @@ public class Person extends Creature implements Observer {
           todoActivities.add(activity);
      }
 
+     public void addImportantActivity(Activity activity) {
+          todoActivities.add(0, activity);
+     }
+
      public Activity getFirstTodoActivity() {
           if (todoActivities.isEmpty())
                return null;
@@ -51,8 +58,12 @@ public class Person extends Creature implements Observer {
 
      @Override
      public void reactToEvent(Event event) {
-          if (event instanceof BrokenApplianceEvent){
-               todoActivities.add(new Fix(this,
+          if (event instanceof WaterBrokeEvent){
+               addImportantActivity(new Fix(this,
+                     ((WaterBrokeEvent) event).getAppliance()));
+
+          } else if (event instanceof BrokenApplianceEvent){
+               addTodoActivity(new Fix(this,
                      ((BrokenApplianceEvent) event).getAppliance()));
           }
      }

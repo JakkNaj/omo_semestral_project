@@ -70,7 +70,6 @@ public class Room implements Observable {
         appliances.forEach(appliance -> {
             appliance.accept(reportVisitor);
         });
-
     }
 
     @Override
