@@ -38,7 +38,7 @@ public abstract class Vehicle {
                 .limit(1)
                 .toList()
                 .get(0)
-                .getRoom("garage")
+                .getRoom("Garage")
                 .useVehicle(this);
     }
 
@@ -50,7 +50,7 @@ public abstract class Vehicle {
                 .limit(1)
                 .toList()
                 .get(0)
-                .getRoom("garage")
+                .getRoom("Garage")
                 .storeVehicle(this);
     }
 }
