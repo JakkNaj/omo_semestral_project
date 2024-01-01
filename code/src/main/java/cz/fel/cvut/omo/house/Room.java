@@ -26,6 +26,7 @@ public class Room implements Observable {
     @Getter
     private final List<Creature> creatures;
 
+    @Getter
     private final List<Door> doors;
 
     @Getter
@@ -96,5 +97,19 @@ public class Room implements Observable {
 
     public void generateEvent() {
         // todo - call notifyAll() with generated event
+    }
+
+    public void tryToMoveCreatures(){
+        for(Creature creature : creatures){
+            creature.move(this);
+        }
+    }
+
+    public void removeCreature(Creature creature){
+        creatures.remove(creature);
+    }
+
+    public void addCreature(Creature creature){
+        creatures.add(creature);
     }
 }

@@ -1,11 +1,12 @@
 package cz.fel.cvut.omo.creature;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import cz.fel.cvut.omo.activities.Activity;
+import cz.fel.cvut.omo.house.Door;
+import cz.fel.cvut.omo.house.Room;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Abstract class for all living beings inside the simulation
@@ -19,6 +20,8 @@ public abstract class Creature implements CreatureInterface {
     private int age = 0;
 
     private boolean sleeping = false;
+
+    private Random rand = new Random();
 
     @Override
     public void age() {
@@ -34,4 +37,22 @@ public abstract class Creature implements CreatureInterface {
         sleeping = true;
     }
 
+    public void move(Room room){
+        //chance of moving to other room
+        if(rand.nextInt(3) == 0){
+            List<Door> doors = room.getDoors();
+            int doorNumber = rand.nextInt(doors.size());
+            Door door = doors.get(doorNumber);
+            Room other = door.getSecondRoom(room);
+
+            door.open();
+            room.removeCreature(this);
+            other.addCreature(this);
+            door.close();
+
+            //TODO log moving to other room, mby do in open and close in Room
+        }
+    }
+
+    public abstract String getName();
 }
