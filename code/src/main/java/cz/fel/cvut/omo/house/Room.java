@@ -8,6 +8,7 @@ import cz.fel.cvut.omo.events.Event;
 import cz.fel.cvut.omo.observer.Observable;
 import cz.fel.cvut.omo.observer.Observer;
 import cz.fel.cvut.omo.report.ReportVisitor;
+import cz.fel.cvut.omo.vehicles.Vehicle;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ public class Room implements Observable {
     private final List<Appliance> appliances;
 
     private final List<Observer> observers = new ArrayList<>();
+
+    private final List<Vehicle> vehicles = new ArrayList<>();
 
     public Room(String name) {
         doors = new ArrayList<>();
