@@ -37,6 +37,7 @@ public class Room implements Observable {
 
     private final List<Observer> observers = new ArrayList<>();
 
+    @Getter
     private final List<Vehicle> vehicles = new ArrayList<>();
 
     public Room(String name) {
@@ -99,5 +100,21 @@ public class Room implements Observable {
 
     public void generateEvent() {
         // todo - call notifyAll() with generated event
+    }
+
+    public void removeVehicle(Vehicle vehicle){
+        vehicles.remove(vehicle);
+    }
+
+    public void useVehicle(Vehicle vehicle){
+        removeVehicle(vehicle);
+    }
+
+    public void addVehicle(Vehicle vehicle){
+        vehicles.add(vehicle);
+    }
+
+    public void storeVehicle(Vehicle vehicle){
+        addVehicle(vehicle);
     }
 }
