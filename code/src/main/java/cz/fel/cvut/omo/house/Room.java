@@ -107,9 +107,13 @@ public class Room implements Observable {
 
     public void removeCreature(Creature creature){
         creatures.remove(creature);
+        if(creature instanceof Person)
+            unsubscribe((Person)creature);
     }
 
     public void addCreature(Creature creature){
         creatures.add(creature);
+        if(creature instanceof Person)
+            subscribe((Person)creature);
     }
 }
