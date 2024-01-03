@@ -7,7 +7,7 @@ import lombok.Getter;
 
 import java.util.Random;
 
-public class Fix extends Activity{
+public class Fix extends ApplianceActivity{
 
     private String manual;
 

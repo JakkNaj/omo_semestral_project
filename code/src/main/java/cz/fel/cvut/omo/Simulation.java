@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+//TODO fix for appliance and vehicle
 public class Simulation {
 
     private House house;
