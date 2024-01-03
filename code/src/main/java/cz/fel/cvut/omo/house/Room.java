@@ -124,9 +124,9 @@ public class Room implements Observable {
     public void generateEvent() {
         // todo - call notifyAll() with generated event
         if (temperature < wantedTemperature - deltaOfTemperature) {
-            new LowTemperatureEvent(name,"low cold");
-        } else if(temperature > wantedTemperature + deltaOfTemperature){
-            new HighTemperatureEvent(name, "too hot");
+            notifyAll(new LowTemperatureEvent(name, "low cold"));
+        } else if (temperature > wantedTemperature + deltaOfTemperature) {
+            notifyAll(new HighTemperatureEvent(name, "too hot"));
         }
     }
 
