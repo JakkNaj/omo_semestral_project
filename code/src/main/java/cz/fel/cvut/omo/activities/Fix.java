@@ -37,6 +37,6 @@ public class Fix extends Activity{
     }
 
     public Appliance getNewAppliance(){
-        return ApplianceFactory.createAppliance(appliance.getClass().getSimpleName(), appliance.getConsumption());
+        return ApplianceFactory.createAppliance(appliance.getClass().getSimpleName(), appliance.getCurrentConsumption());
     }
 }

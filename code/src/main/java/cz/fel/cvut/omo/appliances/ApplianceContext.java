@@ -7,7 +7,7 @@ import java.util.List;
 public interface ApplianceContext {
     void setState(ApplianceState state);
     ApplianceState getState();
-    List<Double> getConsumption();
+    List<Double> getCurrentConsumption();
 
     void turnOn();
 

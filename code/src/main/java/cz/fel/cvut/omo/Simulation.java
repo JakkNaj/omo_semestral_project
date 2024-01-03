@@ -29,8 +29,8 @@ public class Simulation {
         reportVisitor = new ReportVisitorImpl();
     }
 
-    public void iterate(){
-        wearOffAppliances();
+    public void iterate(int i){
+        iterateAppliances(i);
         iterateActivities();
         finishActivities();
     }
@@ -39,11 +39,27 @@ public class Simulation {
         getConsumptionReport();
     }
 
-    public void wearOffAppliances(){
-        house.getFloors().forEach(floor -> floor.getRooms()
+    public void iterateAppliances(int i){
+        wearOffAppliances(i);
+        saveApplianceConsumptions();
+    }
+
+    public void wearOffAppliances(int i){
+        //wear off appliances every day (24th tick)
+        if (i % 24 == 0)
+            house.getFloors().forEach(floor -> floor.getRooms()
                 .forEach(room -> room.getAppliances()
                         .forEach(Appliance::wearOff)));
     }
+
+    public void saveApplianceConsumptions(){
+        //save consumption every tick (hour)
+        house.getFloors().forEach(floor -> floor.getRooms()
+                .forEach(room -> room.getAppliances()
+                        .forEach(Appliance::saveConsumption)));
+    }
+
+
 
     public void iterateActivities(){
         activities.forEach(Activity::iterate);

@@ -11,12 +11,12 @@ import java.util.Random;
 
 public abstract class Appliance implements ApplianceContext {
 
-    //todo down tick wearTear each day in simulation
-
     @Getter
     private int wearTear;
     private ApplianceState state;
     private final List<Double> consumption;
+
+    private List<Double> sumConsumption = List.of(0.0, 0.0, 0.0);
 
     protected List<Runnable> actions;
 
@@ -40,8 +40,8 @@ public abstract class Appliance implements ApplianceContext {
     }
 
     @Override
-    public List<Double> getConsumption() {
-        return state.getConsumption(consumption);
+    public List<Double> getCurrentConsumption() {
+        return state.getCurrentConsumption(consumption);
     }
 
     @Override
@@ -81,14 +81,26 @@ public abstract class Appliance implements ApplianceContext {
     }
 
 
-    //use each day on appliance tick
+    //use each day (every 24th tick) on appliance tick
     public void wearOff(){
         wearTear--;
         if (wearTear == 0)
             this.setState(new BrokenState());
     }
 
-    //todo total consumption - nulled every month
+    //use each hour on appliance tick
+    public void saveConsumption(){
+        List<Double> currentConsumption = getCurrentConsumption();
+        for (int i = 0; i < consumption.size(); i++){
+            sumConsumption.add(currentConsumption.get(i));
+        }
+    }
+
+    public List<Double> getSumConsumption(){
+        List<Double> sum = sumConsumption;
+        sumConsumption = List.of(0.0, 0.0, 0.0);
+        return sum;
+    }
 
     public void accept(ReportVisitor reportVisitor){
         reportVisitor.visit(this);
