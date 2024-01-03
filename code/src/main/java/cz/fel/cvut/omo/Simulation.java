@@ -1,16 +1,20 @@
 package cz.fel.cvut.omo;
 
 import cz.fel.cvut.omo.activities.Activity;
+import cz.fel.cvut.omo.activities.ApplianceActivity;
 import cz.fel.cvut.omo.activities.Fix;
+import cz.fel.cvut.omo.activities.VehicleActivity;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.house.House;
 import cz.fel.cvut.omo.objectPool.ResourcePool;
 import cz.fel.cvut.omo.report.ReportVisitorImpl;
+import cz.fel.cvut.omo.vehicles.Vehicle;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
 //TODO fix for appliance and vehicle
 public class Simulation {
@@ -20,6 +24,8 @@ public class Simulation {
     private ReportVisitorImpl reportVisitor;
 
     private ResourcePool<Appliance> appliancePool;
+
+    private ResourcePool<Vehicle> vehiclePool;
 
     private ResourcePool<Creature> creaturePool;
 
@@ -73,8 +79,10 @@ public class Simulation {
             if (activity.isFinished()) {
                 if (activity instanceof Fix){
                     buyNewAppliance((Fix) activity);
-                } else {
-                    appliancePool.makeAvailable(activity.getAppliance());
+                } else if(activity instanceof ApplianceActivity){
+                    appliancePool.makeAvailable(((ApplianceActivity)activity).getAppliance());
+                } else if(activity instanceof VehicleActivity){
+                    vehiclePool.makeAvailable(((VehicleActivity)activity).getVehicle());
                 }
                 creaturePool.makeAvailable(activity.getCreature());
                 iterator.remove();
