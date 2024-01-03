@@ -67,10 +67,11 @@ public class Simulation {
                 .forEach(room -> room.getAppliances()
                         .forEach(Appliance::saveConsumption)));
     }
-
+    
     public void iterateRooms(){
         house.getFloors().forEach(floor -> floor.getRooms().forEach(Room::changeTemperature));
     }
+
 
     public void iterateActivities(){
         activities.forEach(Activity::iterate);
