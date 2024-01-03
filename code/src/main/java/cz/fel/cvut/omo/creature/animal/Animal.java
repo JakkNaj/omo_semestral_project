@@ -1,6 +1,7 @@
 package cz.fel.cvut.omo.creature.animal;
 
 
+import cz.fel.cvut.omo.creature.Creature;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,9 +10,14 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Animal {
+public class Animal extends Creature {
 
     private String name;
 
     private AnimalType type;
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }

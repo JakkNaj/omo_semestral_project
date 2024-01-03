@@ -9,7 +9,7 @@ import java.util.List;
 public class OnState extends ApplianceState {
     private final double consumptionRatio = 1;
     @Override
-    public List<Double> getConsumption(List<Double> consumption) {
+    public List<Double> getCurrentConsumption(List<Double> consumption) {
         List<Double> outcome = new ArrayList<>();
         consumption.forEach(con -> outcome.add(con * consumptionRatio));
         return outcome;

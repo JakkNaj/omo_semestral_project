@@ -72,4 +72,9 @@ public class Person extends Creature implements Observer {
      public void logEvent(Event event) throws IOException {
           //todo
      }
+
+     @Override
+     public String getName() {
+          return firstName + " " + lastName;
+     }
 }

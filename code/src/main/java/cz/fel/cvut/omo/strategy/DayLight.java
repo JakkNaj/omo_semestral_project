@@ -11,7 +11,7 @@ public class DayLight extends Strategy {
                 .forEach(floor -> floor.getRooms()
                         .forEach(room -> {
                             room.getCreatures()
-                                    .forEach(Creature::sleep);
+                                    .forEach(creature -> creature.setSleeping(false));
                             room.getWindows()
                                     .forEach(window -> window.getBlinds()
                                             .setState(BlindsState.closed));

@@ -9,7 +9,7 @@ import java.util.List;
 public class BrokenState extends ApplianceState {
     private final double consumptionRatio = 0.2;
     @Override
-    public List<Double> getConsumption(List<Double> consumption) {
+    public List<Double> getCurrentConsumption(List<Double> consumption) {
         List<Double> outcome = new ArrayList<>();
         consumption.forEach(con -> outcome.add(con * consumptionRatio));
         return outcome;
