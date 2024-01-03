@@ -23,6 +23,6 @@ public class ReportVisitorImpl implements ReportVisitor{
 
     @Override
     public void visit(Appliance appliance) {
-        System.out.println(appliance.getType() + ": " + appliance.getConsumption() + "  " + appliance.getState().toString() +"\n");
+        System.out.println(appliance.getType() + ": " + appliance.getCurrentConsumption() + "  " + appliance.getState().toString() +"\n");
     }
 }

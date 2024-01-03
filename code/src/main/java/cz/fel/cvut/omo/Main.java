@@ -35,7 +35,7 @@ public class Main {
         Simulation sim = new Simulation(house);
         sim.turnOnAllDevices();
         for (int i = 0; i < ITERATIONS; i++) {
-            sim.iterate();
+            sim.iterate(i);
         }
         sim.report();
     }

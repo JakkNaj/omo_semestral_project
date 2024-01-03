@@ -18,6 +18,8 @@ public abstract class Appliance implements ApplianceContext {
     private ApplianceState state;
     private final List<Double> consumption;
 
+    private List<Double> sumConsumption = List.of(0.0, 0.0, 0.0);
+
     protected List<Runnable> actions;
 
     @Getter
@@ -40,8 +42,8 @@ public abstract class Appliance implements ApplianceContext {
     }
 
     @Override
-    public List<Double> getConsumption() {
-        return state.getConsumption(consumption);
+    public List<Double> getCurrentConsumption() {
+        return state.getCurrentConsumption(consumption);
     }
 
     @Override
@@ -81,11 +83,19 @@ public abstract class Appliance implements ApplianceContext {
     }
 
 
-    //use each day on appliance tick
+    //use each day (every 24th tick) on appliance tick
     public void wearOff(){
         wearTear--;
         if (wearTear == 0)
             this.setState(new BrokenState());
+    }
+
+    //use each hour on appliance tick
+    public void saveConsumption(){
+        List<Double> currentConsumption = getCurrentConsumption();
+        for (int i = 0; i < consumption.size(); i++){
+            sumConsumption.add(currentConsumption.get(i));
+        }
     }
 
     //todo total consumption - nulled every month
