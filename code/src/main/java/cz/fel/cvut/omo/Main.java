@@ -53,14 +53,14 @@ public class Main {
         HouseBuilder houseBuilder = new HouseBuilder();
         FloorBuilder floorBuilder = new FloorBuilder(0);
         FloorBuilder floorBuilder1 = new FloorBuilder(1);
-        RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room");
-        RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen");
+        RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room",22,2);
+        RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen",21,3);
 
         House house = houseBuilder.addFloor(
                 floorBuilder.addRoom(
                             roomBuilderLivingR.addAppliance(new TelevisionImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                     .addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
-                                    .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0), 21))
+                                    .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
                                     .build())
                             .build())
                     .addFloor(
@@ -69,7 +69,7 @@ public class Main {
                                             .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                             .addAppliance(new WashingMachineImpl(Arrays.asList(100.0, 100.0, 0.0)))
                                             .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
-                                            .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0), 18))
+                                            .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
                                             .build())
                                     .build()
                                     )

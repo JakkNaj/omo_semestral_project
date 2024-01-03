@@ -22,20 +22,20 @@ public class HouseBuilderTest {
     public void HouseBuilderTestFirst() {
         House house = new HouseBuilder()
                 .addFloor(new FloorBuilder(0)
-                        .addRoom(new RoomBuilder("outside")
+                        .addRoom(new RoomBuilder("outside",0,100)
                                 .build())
-                        .addRoom(new RoomBuilder("inside")
+                        .addRoom(new RoomBuilder("inside",20,2)
                                 .build())
                         .addDoor("outside", "inside")
                         .build()
                 )
                 .addFloor(new FloorBuilder(1)
-                        .addRoom(new RoomBuilder("Bedroom")
+                        .addRoom(new RoomBuilder("Bedroom",21,1)
                                 .addWindow(new WindowBuilder()
                                         .addBlinds()
                                         .build())
                                 .build())
-                        .addRoom(new RoomBuilder("Bathroom")
+                        .addRoom(new RoomBuilder("Bathroom",19,4)
                                 .addWindow(new WindowBuilder()
                                         .addBlinds()
                                         .build())
@@ -51,17 +51,17 @@ public class HouseBuilderTest {
         HouseBuilder houseBuilder = new HouseBuilder();
         FloorBuilder floorBuilder = new FloorBuilder(0);
         FloorBuilder floorBuilder1 = new FloorBuilder(1);
-        RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room");
-        RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen");
+        RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room",22,2);
+        RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen",21,3);
 
         House house = houseBuilder.addFloor(
                         floorBuilder.addRoom(
                                         roomBuilderLivingR.addAppliance(new TelevisionImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                                 .addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
-                                                .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0), 21))
+                                                .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
                                                 .build())
                                 .addRoom(
-                                        new RoomBuilder("Garage")
+                                        new RoomBuilder("Garage",15,5)
                                                 .addWindow(new WindowBuilder().addBlinds().build())
                                                 .addVehicle(VehicleFactory.getInstance().createCar("Skoda"))
                                                 .addVehicle(VehicleFactory.getInstance().createBike("Detske"))
@@ -69,7 +69,7 @@ public class HouseBuilderTest {
                                                 .addVehicle(VehicleFactory.getInstance().createSki("Lyze"))
                                                 .build())
                                 .addDoor("Garage", "Living room")
-                                .addRoom(new Room("Outside"))
+                                .addRoom(new Room("Outside",0,100))
                                 .addDoor("Garage","Outside")
                                 .build())
                 .addFloor(
@@ -78,7 +78,7 @@ public class HouseBuilderTest {
                                                 .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                                 .addAppliance(new WashingMachineImpl(Arrays.asList(100.0, 100.0, 0.0)))
                                                 .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
-                                                .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0), 18))
+                                                .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
                                                 .build())
                                 .build()
                 )

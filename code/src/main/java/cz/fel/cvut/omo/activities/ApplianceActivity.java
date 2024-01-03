@@ -3,12 +3,14 @@ package cz.fel.cvut.omo.activities;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.appliances.states.BrokenState;
 import cz.fel.cvut.omo.creature.Creature;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class ApplianceActivity extends Activity {
 
+    @Getter
     protected final Appliance appliance;
 
     protected static final Map<Appliance,Map<Creature, Integer>> statistics = new HashMap<>();
