@@ -4,11 +4,13 @@ import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.appliances.states.BrokenState;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.vehicles.Vehicle;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class VehicleActivity extends Activity {
+    @Getter
     protected final Vehicle vehicle;
 
     protected static final Map<Vehicle,Map<Creature, Integer>> statistics = new HashMap<>();
