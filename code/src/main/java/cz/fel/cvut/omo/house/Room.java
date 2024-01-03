@@ -182,4 +182,8 @@ public class Room implements Observable {
         //throw new IllegalAccessException("no heater in room");
     }
 
+    public void setTemperature(int wantedTemperature, int deltaOfTemperature) {
+        this.wantedTemperature = wantedTemperature;
+        this.deltaOfTemperature = deltaOfTemperature;
+    }
 }
