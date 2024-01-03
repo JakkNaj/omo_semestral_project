@@ -20,6 +20,9 @@ public abstract class Appliance implements ApplianceContext {
 
     protected List<Runnable> actions;
 
+    @Getter
+    private final String manual = "repair manual for appliance";
+
     public Appliance(List<Double> consumption, int wearTear) {
         this.consumption = consumption;
         this.wearTear = wearTear;

@@ -26,6 +26,7 @@ public class Room implements Observable {
     @Getter
     private final List<Creature> creatures;
 
+    @Getter
     private final List<Door> doors;
 
     @Getter
@@ -52,11 +53,21 @@ public class Room implements Observable {
         windows.add(window);
     }
 
+    public boolean containsAppliance(Appliance appliance){
+        return appliances.contains(appliance);
+    }
+
     public void addAppliance(Appliance appliance){
         appliances.add(appliance);
         if (appliance instanceof Observer)
             // appliance Observer subscribe this, so the newly generated events can be observed
             subscribe((Observer) appliance);
+    }
+
+    public void removeAppliance(Appliance appliance){
+        appliances.remove(appliance);
+        if (appliance instanceof Observer)
+            unsubscribe((Observer) appliance);
     }
 
     public void addPerson(Person person){
@@ -96,5 +107,19 @@ public class Room implements Observable {
 
     public void generateEvent() {
         // todo - call notifyAll() with generated event
+    }
+
+    public void tryToMoveCreatures(){
+        for(Creature creature : creatures){
+            creature.move(this);
+        }
+    }
+
+    public void removeCreature(Creature creature){
+        creatures.remove(creature);
+    }
+
+    public void addCreature(Creature creature){
+        creatures.add(creature);
     }
 }
