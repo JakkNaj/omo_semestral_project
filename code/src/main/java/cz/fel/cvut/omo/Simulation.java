@@ -7,7 +7,6 @@ import cz.fel.cvut.omo.activities.VehicleActivity;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.house.House;
-import cz.fel.cvut.omo.house.Room;
 import cz.fel.cvut.omo.objectPool.ResourcePool;
 import cz.fel.cvut.omo.report.ReportVisitorImpl;
 import cz.fel.cvut.omo.vehicles.Vehicle;
@@ -39,7 +38,6 @@ public class Simulation {
 
     public void iterate(int i){
         iterateAppliances(i);
-        iterateRooms();
         iterateActivities();
         finishActivities();
     }
@@ -69,9 +67,6 @@ public class Simulation {
     }
 
 
-    public void iterateRooms(){
-        house.getFloors().forEach(floor -> floor.getRooms().forEach(Room::changeTemperature));
-    }
 
     public void iterateActivities(){
         activities.forEach(Activity::iterate);

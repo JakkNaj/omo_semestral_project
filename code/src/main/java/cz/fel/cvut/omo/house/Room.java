@@ -164,7 +164,12 @@ public class Room implements Observable {
             subscribe((Person) creature);
     }
 
-    public void changeTemperature() {
+    public void tick() {
+        changeTemperature();
+
+    }
+
+    private void changeTemperature() {
         for (Appliance appliance : appliances) {
             if (appliance instanceof Heater heater) {
                 if (heater.getState() instanceof OnState) {
