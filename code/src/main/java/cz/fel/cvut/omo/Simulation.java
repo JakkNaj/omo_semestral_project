@@ -1,6 +1,7 @@
 package cz.fel.cvut.omo;
 
 import cz.fel.cvut.omo.activities.Activity;
+import cz.fel.cvut.omo.activities.Fix;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.house.House;
@@ -53,10 +54,28 @@ public class Simulation {
         while (iterator.hasNext()) {
             Activity activity = iterator.next();
             if (activity.isFinished()) {
-                appliancePool.makeAvailable(activity.getAppliance());
+                if (activity instanceof Fix){
+                    buyNewAppliance((Fix) activity);
+                } else {
+                    appliancePool.makeAvailable(activity.getAppliance());
+                }
                 creaturePool.makeAvailable(activity.getCreature());
                 iterator.remove();
             }
+        }
+    }
+
+    public void buyNewAppliance(Fix fix){
+        if (!fix.getFixable()){
+            Appliance newAppliance = fix.getNewAppliance();
+            house.getFloors().forEach(floor -> floor.getRooms().forEach(room -> {
+                if (room.containsAppliance(fix.getAppliance())){
+                    room.removeAppliance(fix.getAppliance());
+                    appliancePool.discard(fix.getAppliance());
+                    room.addAppliance(newAppliance);
+                    appliancePool.insert(newAppliance);
+                }
+            }));
         }
     }
 

@@ -53,11 +53,21 @@ public class Room implements Observable {
         windows.add(window);
     }
 
+    public boolean containsAppliance(Appliance appliance){
+        return appliances.contains(appliance);
+    }
+
     public void addAppliance(Appliance appliance){
         appliances.add(appliance);
         if (appliance instanceof Observer)
             // appliance Observer subscribe this, so the newly generated events can be observed
             subscribe((Observer) appliance);
+    }
+
+    public void removeAppliance(Appliance appliance){
+        appliances.remove(appliance);
+        if (appliance instanceof Observer)
+            unsubscribe((Observer) appliance);
     }
 
     public void addPerson(Person person){
