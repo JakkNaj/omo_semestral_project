@@ -4,7 +4,4 @@ import cz.fel.cvut.omo.appliances.ApplianceContext;
 
 public interface Heater extends ApplianceContext {
 
-    void lowerTemperature();
-
-    void upTemperature();
 }

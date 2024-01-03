@@ -12,8 +12,8 @@ public class RoomBuilder {
         return room;
     }
 
-    public RoomBuilder(String name){
-        room = new Room(name);
+    public RoomBuilder(String name, int wantedTemperature, int deltaOfTemperature){
+        room = new Room(name,wantedTemperature,deltaOfTemperature);
     }
 
     public RoomBuilder addWindow(Window window){

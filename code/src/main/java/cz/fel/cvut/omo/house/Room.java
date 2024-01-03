@@ -2,9 +2,14 @@ package cz.fel.cvut.omo.house;
 
 import cz.fel.cvut.omo.activities.Activity;
 import cz.fel.cvut.omo.appliances.Appliance;
+import cz.fel.cvut.omo.appliances.heater.Heater;
+import cz.fel.cvut.omo.appliances.states.ApplianceState;
+import cz.fel.cvut.omo.appliances.states.OnState;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.creature.person.Person;
 import cz.fel.cvut.omo.events.Event;
+import cz.fel.cvut.omo.events.HighTemperatureEvent;
+import cz.fel.cvut.omo.events.LowTemperatureEvent;
 import cz.fel.cvut.omo.observer.Observable;
 import cz.fel.cvut.omo.observer.Observer;
 import cz.fel.cvut.omo.report.ReportVisitor;
@@ -24,6 +29,10 @@ public class Room implements Observable {
 
     private int temperature;
 
+    private int wantedTemperature;
+
+    private int deltaOfTemperature;
+
     @Getter
     private final List<Creature> creatures;
 
@@ -41,46 +50,49 @@ public class Room implements Observable {
     @Getter
     private final List<Vehicle> vehicles = new ArrayList<>();
 
-    public Room(String name) {
+    public Room(String name, int wantedTemperature, int deltaOfTemperature) {
+        this.wantedTemperature = wantedTemperature;
+        this.deltaOfTemperature = deltaOfTemperature;
         doors = new ArrayList<>();
         creatures = new ArrayList<>();
         windows = new ArrayList<>();
         appliances = new ArrayList<>();
         this.name = name;
+        temperature = 18;
     }
 
-    public void addDoor(Door door){
+    public void addDoor(Door door) {
         doors.add(door);
     }
 
-    public void addWindow(Window window){
+    public void addWindow(Window window) {
         windows.add(window);
     }
 
-    public boolean containsAppliance(Appliance appliance){
+    public boolean containsAppliance(Appliance appliance) {
         return appliances.contains(appliance);
     }
 
-    public void addAppliance(Appliance appliance){
+    public void addAppliance(Appliance appliance) {
         appliances.add(appliance);
         if (appliance instanceof Observer)
             // appliance Observer subscribe this, so the newly generated events can be observed
             subscribe((Observer) appliance);
     }
 
-    public void removeAppliance(Appliance appliance){
+    public void removeAppliance(Appliance appliance) {
         appliances.remove(appliance);
         if (appliance instanceof Observer)
             unsubscribe((Observer) appliance);
     }
 
-    public void addPerson(Person person){
+    public void addPerson(Person person) {
         creatures.add(person);
         //person subscribe this, so the newly generated events can be observed
         subscribe(person);
     }
 
-    public void accept(ReportVisitor reportVisitor){
+    public void accept(ReportVisitor reportVisitor) {
         reportVisitor.visit(this);
         appliances.forEach(appliance -> {
             appliance.accept(reportVisitor);
@@ -111,39 +123,67 @@ public class Room implements Observable {
 
     public void generateEvent() {
         // todo - call notifyAll() with generated event
+        if (temperature < wantedTemperature - deltaOfTemperature) {
+            notifyAll(new LowTemperatureEvent(name, "low cold"));
+        } else if (temperature > wantedTemperature + deltaOfTemperature) {
+            notifyAll(new HighTemperatureEvent(name, "too hot"));
+        }
     }
 
-    public void removeVehicle(Vehicle vehicle){
+    public void removeVehicle(Vehicle vehicle) {
         vehicles.remove(vehicle);
     }
 
-    public void useVehicle(Vehicle vehicle){
+    public void useVehicle(Vehicle vehicle) {
         removeVehicle(vehicle);
     }
 
-    public void addVehicle(Vehicle vehicle){
+    public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
     }
 
-    public void storeVehicle(Vehicle vehicle){
+    public void storeVehicle(Vehicle vehicle) {
         addVehicle(vehicle);
     }
 
-    public void tryToMoveCreatures(){
-        for(Creature creature : creatures){
+    public void tryToMoveCreatures() {
+        for (Creature creature : creatures) {
             creature.move(this);
         }
     }
 
-    public void removeCreature(Creature creature){
+    public void removeCreature(Creature creature) {
         creatures.remove(creature);
-        if(creature instanceof Person)
-            unsubscribe((Person)creature);
+        if (creature instanceof Person)
+            unsubscribe((Person) creature);
     }
 
-    public void addCreature(Creature creature){
+    public void addCreature(Creature creature) {
         creatures.add(creature);
-        if(creature instanceof Person)
-            subscribe((Person)creature);
+        if (creature instanceof Person)
+            subscribe((Person) creature);
+    }
+
+    public void tick() {
+        changeTemperature();
+
+    }
+
+    private void changeTemperature() {
+        for (Appliance appliance : appliances) {
+            if (appliance instanceof Heater heater) {
+                if (heater.getState() instanceof OnState) {
+                    temperature++;
+                    return;
+                }
+            }
+        }
+        temperature--;
+        //throw new IllegalAccessException("no heater in room");
+    }
+
+    public void setTemperature(int wantedTemperature, int deltaOfTemperature) {
+        this.wantedTemperature = wantedTemperature;
+        this.deltaOfTemperature = deltaOfTemperature;
     }
 }
