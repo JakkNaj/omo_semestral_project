@@ -11,8 +11,6 @@ import java.util.Random;
 
 public abstract class Appliance implements ApplianceContext {
 
-    //todo down tick wearTear each day in simulation
-
     @Getter
     private int wearTear;
     private ApplianceState state;
@@ -98,7 +96,11 @@ public abstract class Appliance implements ApplianceContext {
         }
     }
 
-    //todo total consumption - nulled every month
+    public List<Double> getSumConsumption(){
+        List<Double> sum = sumConsumption;
+        sumConsumption = List.of(0.0, 0.0, 0.0);
+        return sum;
+    }
 
     public void accept(ReportVisitor reportVisitor){
         reportVisitor.visit(this);
