@@ -181,4 +181,8 @@ public class Room implements Observable {
         this.wantedTemperature = wantedTemperature;
         this.deltaOfTemperature = deltaOfTemperature;
     }
+
+    public void acceptEvent(Event event){
+        notifyAll(event);
+    }
 }

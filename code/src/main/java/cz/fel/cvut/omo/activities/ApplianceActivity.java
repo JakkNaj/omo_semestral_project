@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ApplianceActivity extends Activity {
+public class ApplianceActivity extends Activity {
 
     @Getter
     protected final Appliance appliance;

@@ -9,7 +9,7 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class VehicleActivity extends Activity {
+public class VehicleActivity extends Activity {
     @Getter
     protected final Vehicle vehicle;
 
