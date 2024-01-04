@@ -3,6 +3,9 @@ package cz.fel.cvut.omo.appliances;
 
 
 import cz.fel.cvut.omo.appliances.states.*;
+import cz.fel.cvut.omo.events.BrokenApplianceEvent;
+import cz.fel.cvut.omo.house.House;
+import cz.fel.cvut.omo.house.Room;
 import cz.fel.cvut.omo.report.ReportVisitor;
 import lombok.Getter;
 
@@ -84,8 +87,11 @@ public abstract class Appliance implements ApplianceContext {
     //use each day (every 24th tick) on appliance tick
     public void wearOff(){
         wearTear--;
-        if (wearTear == 0)
+        if (wearTear == 0) {
             this.setState(new BrokenState());
+            Room room = House.getInstance().getApplianceRoom(this);
+            room.acceptEvent(new BrokenApplianceEvent(room.getName(), "age",this));
+        }
     }
 
     //use each hour on appliance tick
