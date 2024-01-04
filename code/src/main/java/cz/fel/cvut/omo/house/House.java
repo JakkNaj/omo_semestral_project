@@ -25,8 +25,6 @@ public class House {
     //Singleton
     private static House INSTANCE;
 
-    private final List<Event> events = new ArrayList<>();
-
     @Getter
     private final List<Floor> floors = new ArrayList<>();
 
@@ -90,5 +88,35 @@ public class House {
             });
         });
         return result.get();
+    }
+
+    public List<Creature> getAllCreatures() {
+        List<Creature> creatures = new ArrayList<>();
+        floors.forEach(floor -> {
+            floor.getRooms().forEach(room -> {
+                creatures.addAll(room.getCreatures());
+            });
+        });
+        return creatures;
+    }
+
+    public List<Appliance> getAllAppliances() {
+        List<Appliance> appliances = new ArrayList<>();
+        floors.forEach(floor -> {
+            floor.getRooms().forEach(room -> {
+                appliances.addAll(room.getAppliances());
+            });
+        });
+        return appliances;
+    }
+
+    public List<Vehicle> getAllVehicles() {
+        List<Vehicle> vehicles = new ArrayList<>();
+        floors.forEach(floor -> {
+            floor.getRooms().forEach(room -> {
+                vehicles.addAll(room.getVehicles());
+            });
+        });
+        return vehicles;
     }
 }

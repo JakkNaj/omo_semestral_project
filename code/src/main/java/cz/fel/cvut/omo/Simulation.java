@@ -1,9 +1,6 @@
 package cz.fel.cvut.omo;
 
-import cz.fel.cvut.omo.activities.Activity;
-import cz.fel.cvut.omo.activities.ApplianceActivity;
-import cz.fel.cvut.omo.activities.Fix;
-import cz.fel.cvut.omo.activities.VehicleActivity;
+import cz.fel.cvut.omo.activities.*;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.creature.person.Person;
@@ -15,7 +12,6 @@ import cz.fel.cvut.omo.vehicles.Vehicle;
 
 import java.util.*;
 
-//TODO fix for appliance and vehicle
 public class Simulation {
 
     private House house;
@@ -35,6 +31,9 @@ public class Simulation {
     public Simulation(House house) {
         this.house = house;
         reportVisitor = new ReportVisitorImpl();
+        creaturePool = new ResourcePool<>(House.getInstance().getAllCreatures());
+        appliancePool = new ResourcePool<>(House.getInstance().getAllAppliances());
+        vehiclePool = new ResourcePool<>(House.getInstance().getAllVehicles());
     }
 
     public void iterate(int i) {
@@ -42,6 +41,7 @@ public class Simulation {
         iterateRooms();
         iterateActivities();
         finishActivities();
+        simulateBehavior(i);
     }
 
     public void report() {
@@ -114,22 +114,35 @@ public class Simulation {
     }
 
 
-    public void createActivity() {
-        // TODO mby change to while
-        if (creaturePool.hasAvailable()) {
+    private void createActivities() {
+        while (creaturePool.hasAvailable()) {
             Creature creature = creaturePool.useRandom();
             if (rand.nextBoolean() && appliancePool.hasAvailable()) {
                 Appliance appliance = appliancePool.useRandom();
                 if (House.getInstance().getApplianceRoom(appliance) == House.getInstance().getCreatureRoom(creature)) {
-                    activities.add(new ApplianceActivity(creature, appliance, rand.nextInt(2, 12)));
+                    activities.add(new ApplianceActivity(creature, appliance, rand.nextInt(1, 4)));
                 }
             } else if (vehiclePool.hasAvailable()) {
                 Vehicle vehicle = vehiclePool.useRandom();
                 if (House.getInstance().getVehicleRoom(vehicle) == House.getInstance().getCreatureRoom(creature)) {
-                    activities.add(new VehicleActivity(creature, vehicle, rand.nextInt(1, 5)));
+                    activities.add(new VehicleActivity(creature, vehicle, rand.nextInt(1, 12)));
                 }
+            } else {
+                activities.add(new WaitingActivity(creature));
             }
         }
+    }
+
+    private void doTodoActivities() {
+        creaturePool.getAvailable().forEach(creature -> {
+            if (creature instanceof Person person) {
+                Activity activity = person.getFirstTodoActivity();
+                if (activity != null) {
+                    creaturePool.useResource(creature);
+                    activities.add(activity);
+                }
+            }
+        });
     }
 
     public void generateRandomEvent() {
@@ -143,10 +156,27 @@ public class Simulation {
         }
     }
 
+    public void simulateBehavior(int tick){
+        if (activeTimeForCreature(tick)){
+            doTodoActivities();
+            createActivities();
+            generateRandomEvent();
+        }
+    }
+
+    private boolean activeTimeForCreature(int tick) {
+        int begin = 8;
+        int end = 20;
+        int hourInSimulation = tick % 24;
+        return hourInSimulation >= begin && hourInSimulation <= end;
+    }
+
     //todo delete later, only for testing purposes
     public void turnOnAllDevices() {
         house.getFloors().forEach(floor -> floor.getRooms()
                 .forEach(room -> room.getAppliances()
                         .forEach(Appliance::turnOn)));
     }
+
+
 }

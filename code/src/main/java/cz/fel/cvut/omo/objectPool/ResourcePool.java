@@ -1,5 +1,7 @@
 package cz.fel.cvut.omo.objectPool;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,6 +13,8 @@ import java.util.Random;
 public class ResourcePool<T> {
 
     private final List<T> inUse = new ArrayList<>();
+
+    @Getter
     private final List<T> available = new ArrayList<>();
 
     public ResourcePool(List<T> resources) {
@@ -91,9 +95,12 @@ public class ResourcePool<T> {
      * @param resource resource to be made available
      */
     public void makeAvailable(T resource) {
-        inUse.remove(resource);
-        available.add(resource);
+        if (inUse.contains(resource)) {
+            inUse.remove(resource);
+            available.add(resource);
+        }
     }
+
 
     /**
      * @return all resources (in use or available from resource pool)
