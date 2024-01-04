@@ -1,7 +1,13 @@
 package cz.fel.cvut.omo.creature;
 
+import cz.fel.cvut.omo.appliances.Appliance;
+import cz.fel.cvut.omo.events.BrokenApplianceEvent;
+import cz.fel.cvut.omo.events.BrokenVehicleEvent;
+import cz.fel.cvut.omo.events.Event;
+import cz.fel.cvut.omo.events.WaterBrokeEvent;
 import cz.fel.cvut.omo.house.Door;
 import cz.fel.cvut.omo.house.Room;
+import cz.fel.cvut.omo.vehicles.Vehicle;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,9 +43,9 @@ public abstract class Creature implements CreatureInterface {
         sleeping = true;
     }
 
-    public void move(Room room){
+    public void move(Room room) {
         //chance of moving to other room
-        if(rand.nextInt(3) == 0){
+        if (rand.nextInt(3) == 0) {
             List<Door> doors = room.getDoors();
             int doorNumber = rand.nextInt(doors.size());
             Door door = doors.get(doorNumber);
@@ -55,4 +61,14 @@ public abstract class Creature implements CreatureInterface {
     }
 
     public abstract String getName();
+
+    public void generateEvent(Room room, Appliance appliance) {
+        appliance.turnBroken();
+        room.acceptEvent(new BrokenApplianceEvent(room.getName(), "cause why not, " + this.getName(), appliance));
+    }
+
+    public void generateEvent(Room room, Vehicle vehicle) {
+        vehicle.setBroken(true);
+        room.acceptEvent(new BrokenVehicleEvent(room.getName(), "cause why not, " + this.getName(), vehicle));
+    }
 }
