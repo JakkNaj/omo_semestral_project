@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TelevisionImpl extends Appliance implements Television{
     public TelevisionImpl(List<Double> consumption) {
-        super(consumption, 1240);
+        super(consumption, 1240 * 24);
     }
 
     @Override

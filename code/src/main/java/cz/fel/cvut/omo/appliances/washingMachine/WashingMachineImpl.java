@@ -11,7 +11,7 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
     private boolean loaded;
 
     public WashingMachineImpl(List<Double> consumption) {
-        super(consumption, 360);
+        super(consumption, 360 * 8 * 24);
         actions.add(this::load);
         actions.add(this::wash);
     }

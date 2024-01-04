@@ -17,7 +17,8 @@ import java.util.Collections;
 
 public class Main {
 
-    private static final int ITERATIONS = 1000;
+    // One iteration is one hour
+    private static final int ITERATIONS = 10 * 24;
 
     private static final String CONFIGURATION = "houseConfig.json";
 

@@ -11,7 +11,7 @@ import cz.fel.cvut.omo.observer.Observer;
 public class HeaterImpl extends Appliance implements Heater, Observer {
 
     public HeaterImpl(List<Double> consumption) {
-        super(consumption, 1240);
+        super(consumption, 365 * 8 * 24);
     }
 
     @Override

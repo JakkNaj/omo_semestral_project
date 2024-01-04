@@ -15,7 +15,7 @@ public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
 
 
     public CoffeeMachineImpl(List<Double> consumption) {
-        super(consumption, 620);
+        super(consumption, 365 * 24);
         actions.add(this::makeEspresso);
         actions.add(this::makeTurek);
     }
