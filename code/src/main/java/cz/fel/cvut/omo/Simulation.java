@@ -162,8 +162,6 @@ public class Simulation {
                 }
             } else {
                 activities.add(new WaitingActivity(creature));
-                //todo repair
-                //creatureRoom.tryToMoveCreatures();
             }
         }
     }

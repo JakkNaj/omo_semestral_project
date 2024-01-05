@@ -1,6 +1,7 @@
 package cz.fel.cvut.omo.activities;
 
 import cz.fel.cvut.omo.creature.Creature;
+import cz.fel.cvut.omo.house.House;
 import cz.fel.cvut.omo.vehicles.Vehicle;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public class WaitingActivity extends Activity {
     @Override
     public void iterate() {
         timeOfUse++;
+        creature.move(House.getInstance().getCreatureRoom(creature));
     }
 
     @Override

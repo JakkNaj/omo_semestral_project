@@ -23,7 +23,6 @@ public class VehicleActivity extends Activity {
 
     public void iterate(){
         if (timeOfUse == 0){
-            House house = House.getInstance();
             vehicle.take();
             vehicle.setInUse(true);
         }
