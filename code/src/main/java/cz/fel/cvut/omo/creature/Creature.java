@@ -47,6 +47,9 @@ public abstract class Creature implements CreatureInterface {
         //chance of moving to other room
         if (rand.nextInt(3) == 0) {
             List<Door> doors = room.getDoors();
+            if (doors.size() == 0){
+                int i = 0;
+            }
             int doorNumber = rand.nextInt(doors.size());
             Door door = doors.get(doorNumber);
             Room other = door.getSecondRoom(room);

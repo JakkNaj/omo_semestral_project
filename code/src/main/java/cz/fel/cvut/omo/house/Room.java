@@ -134,16 +134,8 @@ public class Room implements Observable {
         vehicles.remove(vehicle);
     }
 
-    public void useVehicle(Vehicle vehicle) {
-        removeVehicle(vehicle);
-    }
-
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
-    }
-
-    public void storeVehicle(Vehicle vehicle) {
-        addVehicle(vehicle);
     }
 
     public void tryToMoveCreatures() {

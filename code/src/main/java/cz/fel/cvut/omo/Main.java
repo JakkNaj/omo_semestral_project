@@ -28,7 +28,7 @@ import java.util.Random;
 public class Main {
 
     // One iteration is one hour
-    private static final int ITERATIONS = 24;
+    private static final int ITERATIONS = 24 * 31 * 12 * 100;
 
     private static final String CONFIGURATION = "houseConfig.json";
 
@@ -66,7 +66,7 @@ public class Main {
         FloorBuilder floorBuilder = new FloorBuilder(0);
         FloorBuilder floorBuilder1 = new FloorBuilder(1);
         RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room", 22, 2);
-        RoomBuilder roomBuilderLivingR2 = new RoomBuilder("Living room", 22, 2);
+        RoomBuilder roomBuilderLivingR2 = new RoomBuilder("Living room2", 22, 2);
         RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen", 21, 3);
         RoomBuilder roomBuilderBedroom = new RoomBuilder("Bedroom", 19, 1);
 
@@ -90,6 +90,7 @@ public class Main {
                                 .addDoor("Garage", "Living room")
                                 .addRoom(new Room("Outside", 0, 100))
                                 .addDoor("Garage", "Outside")
+                                .addDoor("Living room", "Outside")
                                 .build())
                 .addFloor(
                         floorBuilder1.addRoom(
@@ -112,9 +113,9 @@ public class Main {
                                                 .addAppliance(new PlaystationImpl(Arrays.asList(50.0, 0.0, 0.0)))
                                                 .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
                                                 .build())
-                                .addDoor("Kitchen", "Living room")
-                                .addRoom(new Room("Outside", 0, 100))
-                                .addDoor("Bedroom", "Living room")
+                                .addDoor("Kitchen", "Living room2")
+                                .addDoor("Bedroom", "Living room2")
+                                .addDoor("Bedroom", "Kitchen")
                                 .build()
                 )
                 .build();

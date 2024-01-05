@@ -59,13 +59,15 @@ public class Person extends Creature implements Observer {
 
      @Override
      public void reactToEvent(Event event) {
-          if (event instanceof WaterBrokeEvent){
-               addImportantActivity(new Fix(this,
-                     ((WaterBrokeEvent) event).getAppliance()));
+          if (type == PersonType.ADULT || type == PersonType.ELDER) {
+               if (event instanceof WaterBrokeEvent){
+                    addImportantActivity(new Fix(this,
+                            ((WaterBrokeEvent) event).getAppliance()));
 
-          } else if (event instanceof BrokenApplianceEvent){
-               addTodoActivity(new Fix(this,
-                     ((BrokenApplianceEvent) event).getAppliance()));
+               } else if (event instanceof BrokenApplianceEvent){
+                    addTodoActivity(new Fix(this,
+                            ((BrokenApplianceEvent) event).getAppliance()));
+               }
           }
      }
 

@@ -14,4 +14,9 @@ public class PlaystationImpl extends Appliance implements Playstation {
     public String getType() {
         return "Playstation";
     }
+
+    @Override
+    public void turnOff() {
+        super.turnIdle();
+    }
 }

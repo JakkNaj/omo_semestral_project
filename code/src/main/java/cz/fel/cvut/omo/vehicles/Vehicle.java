@@ -31,26 +31,10 @@ public abstract class Vehicle {
     }
 
     public void take(){
-        House.getInstance()
-                .getFloors()
-                .stream()
-                .filter(floor -> floor.getLevel() == 0)
-                .limit(1)
-                .toList()
-                .get(0)
-                .getRoom("Garage")
-                .useVehicle(this);
+        this.inUse = true;
     }
 
     public void store(){
-        House.getInstance()
-                .getFloors()
-                .stream()
-                .filter(floor -> floor.getLevel() == 0)
-                .limit(1)
-                .toList()
-                .get(0)
-                .getRoom("Garage")
-                .storeVehicle(this);
+        this.inUse = false;
     }
 }

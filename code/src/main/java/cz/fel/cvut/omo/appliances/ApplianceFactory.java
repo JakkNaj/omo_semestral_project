@@ -16,7 +16,7 @@ public class ApplianceFactory {
         switch (type) {
             case "TelevisionImpl":
                 return new TelevisionImpl(consumption);
-            case "LightImpl":
+            case "LightingImpl":
                 return new LightingImpl(consumption);
             case "WashingMachineImpl":
                 return new WashingMachineImpl(consumption);

@@ -13,4 +13,9 @@ public class TelevisionImpl extends Appliance implements Television{
     public String getType() {
         return "Television";
     }
+
+    @Override
+    public void turnOff() {
+        super.turnIdle();
+    }
 }

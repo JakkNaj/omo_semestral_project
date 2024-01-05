@@ -40,7 +40,7 @@ public class Simulation {
         iterateAppliances(i);
         iterateRooms();
         iterateActivities();
-        finishActivities();
+        finishActivities(i);
         simulateBehavior(i);
     }
 
@@ -77,7 +77,7 @@ public class Simulation {
         activities.forEach(Activity::iterate);
     }
 
-    public void finishActivities() {
+    public void finishActivities(int i) {
         Iterator<Activity> iterator = activities.iterator();
         while (iterator.hasNext()) {
             Activity activity = iterator.next();
@@ -90,6 +90,9 @@ public class Simulation {
                     vehiclePool.makeAvailable(((VehicleActivity) activity).getVehicle());
                 }
                 creaturePool.makeAvailable(activity.getCreature());
+                if (!activeTimeForCreature(i)){
+                    activity.getCreature().sleep();
+                }
                 iterator.remove();
             }
         }
@@ -190,12 +193,14 @@ public class Simulation {
                 } else if(activity instanceof ApplianceActivity applianceActivity){
                     activity.getCreature().generateEvent(House.getInstance().getApplianceRoom(applianceActivity.getAppliance()), applianceActivity.getAppliance());
                 }
+                activities.remove(activity);
             }
         }
     }
 
     public void simulateBehavior(int tick){
         if (activeTimeForCreature(tick)){
+            House.getInstance().getAllCreatures().forEach(creature -> creature.setSleeping(false));
             doTodoActivities();
             createActivitiesNumTWO();
             generateRandomEvent();

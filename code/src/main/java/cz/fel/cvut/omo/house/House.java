@@ -1,11 +1,8 @@
 package cz.fel.cvut.omo.house;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cz.fel.cvut.omo.activities.Activity;
-import cz.fel.cvut.omo.activities.VehicleActivity;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.creature.Creature;
-import cz.fel.cvut.omo.events.Event;
 import cz.fel.cvut.omo.report.ReportVisitor;
 import cz.fel.cvut.omo.vehicles.Vehicle;
 import lombok.Getter;
