@@ -25,6 +25,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Main class of the project
+ * @author Jakub Najman (najmajak), Matěj Martínek (...)
+ */
 public class Main {
 
     // One iteration is one hour
@@ -45,7 +49,6 @@ public class Main {
 
     private static void simulate(House house) {
         Simulation sim = new Simulation(house);
-        sim.turnOnAllDevices();
         for (int i = 0; i < ITERATIONS; i++) {
             sim.iterate(i);
         }

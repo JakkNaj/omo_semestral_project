@@ -5,6 +5,9 @@ import cz.fel.cvut.omo.house.Floor;
 import cz.fel.cvut.omo.house.House;
 import cz.fel.cvut.omo.house.Room;
 
+/**
+ * Visitor interface for report generation
+ */
 public interface ReportVisitor {
     void visit(House house);
 

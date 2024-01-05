@@ -8,6 +8,9 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class representing an interaction of Person/Creature with an Appliance
+ */
 public class ApplianceActivity extends Activity {
 
     @Getter
@@ -21,6 +24,9 @@ public class ApplianceActivity extends Activity {
         updateStatistics();
     }
 
+    /**
+     * Iterating the activity from simulation (1 iteration = 1 hour)
+     */
     public void iterate(){
         if (timeOfUse == 0){
             appliance.turnOn();
@@ -36,6 +42,9 @@ public class ApplianceActivity extends Activity {
         System.out.println(this);
     }
 
+    /**
+     * Updating statistics about appliance usage
+     */
     protected void updateStatistics(){
         if (!statistics.containsKey(appliance)){
             statistics.put(appliance, new HashMap<>());

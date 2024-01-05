@@ -1,7 +1,5 @@
 package cz.fel.cvut.omo.appliances;
 
-
-
 import cz.fel.cvut.omo.appliances.states.*;
 import cz.fel.cvut.omo.events.BrokenApplianceEvent;
 import cz.fel.cvut.omo.house.House;
@@ -13,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Abstract class representing an appliance in the house
+ * - all Appliances extends this class
+ */
 public abstract class Appliance implements ApplianceContext {
 
     @Getter

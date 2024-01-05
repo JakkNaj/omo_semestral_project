@@ -1,5 +1,8 @@
 package cz.fel.cvut.omo.creature.person;
 
+/**
+ * Factory for creating people with different types
+ */
 public class PersonFactory {
 
     private static PersonFactory INSTANCE = null;

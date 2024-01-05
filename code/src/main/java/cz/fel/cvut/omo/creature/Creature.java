@@ -16,6 +16,7 @@ import java.util.Random;
 
 /**
  * Abstract class for all living beings inside the simulation
+ * - all Creatures extends this class
  */
 @Getter
 @Setter
@@ -47,9 +48,6 @@ public abstract class Creature implements CreatureInterface {
         //chance of moving to other room
         if (rand.nextInt(3) == 0) {
             List<Door> doors = room.getDoors();
-            if (doors.size() == 0){
-                int i = 0;
-            }
             int doorNumber = rand.nextInt(doors.size());
             Door door = doors.get(doorNumber);
             Room other = door.getSecondRoom(room);
@@ -65,11 +63,19 @@ public abstract class Creature implements CreatureInterface {
 
     public abstract String getName();
 
+    /**
+     * Method for generating event
+     * - used to generate BrokenApplianceEvent when breaking the appliance while using it
+     */
     public void generateEvent(Room room, Appliance appliance) {
         appliance.turnBroken();
         room.acceptEvent(new BrokenApplianceEvent(room.getName(), "cause why not, " + this.getName(), appliance));
     }
 
+    /**
+     * Method for generating event
+     * - used to generate BrokenVehicle when breaking the vehicle while using it
+     */
     public void generateEvent(Room room, Vehicle vehicle) {
         vehicle.setBroken(true);
         room.acceptEvent(new BrokenVehicleEvent(room.getName(), "cause why not, " + this.getName(), vehicle));

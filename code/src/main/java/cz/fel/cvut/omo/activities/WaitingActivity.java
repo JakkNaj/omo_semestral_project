@@ -7,6 +7,9 @@ import cz.fel.cvut.omo.vehicles.Vehicle;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class representing a Waiting activity long 1 tick (1 hour)
+ */
 public class WaitingActivity extends Activity {
 
     protected static final Map<Creature, Integer> statistics = new HashMap<>();

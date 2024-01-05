@@ -11,6 +11,10 @@ import cz.fel.cvut.omo.appliances.washingMachine.WashingMachineImpl;
 
 import java.util.List;
 
+/**
+ * Factory for creating appliances
+ * - mainly used for exchanging broken appliances with new ones
+ */
 public class ApplianceFactory {
     public static Appliance createAppliance(String type, List<Double> consumption) {
         switch (type) {

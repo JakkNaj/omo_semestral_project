@@ -12,7 +12,7 @@ import java.util.Map;
 
 
 /**
- * Class representing an interaction between a Creature (Person / Animal) and an Appliance
+ * Class representing an activity of Person/Creature
  */
 @Getter
 public abstract class Activity {

@@ -12,6 +12,10 @@ import cz.fel.cvut.omo.vehicles.Vehicle;
 
 import java.util.*;
 
+/**
+ * Simulation class
+ * - 1 iteration = 1 hour in real time
+ */
 public class Simulation {
 
     private House house;
@@ -36,6 +40,10 @@ public class Simulation {
         vehiclePool = new ResourcePool<>(House.getInstance().getAllVehicles());
     }
 
+    /**
+     * Simulate one iteration of the simulation
+     * @param i - current iteration
+     */
     public void iterate(int i) {
         iterateAppliances(i);
         iterateRooms();
@@ -49,12 +57,17 @@ public class Simulation {
         getActivityAndUsageReport();
     }
 
-    public void iterateAppliances(int i) {
+    private void iterateAppliances(int i) {
         wearOffAppliances(i);
         saveApplianceConsumptions();
     }
 
-    public void wearOffAppliances(int i) {
+    /**
+     * Wear off appliances
+     * - the appliance can be broken this way
+     * @param i - current tick
+     */
+    private void wearOffAppliances(int i) {
         //wear off appliances every day (24th tick)
         if (i % 24 == 0)
             house.getFloors().forEach(floor -> floor.getRooms()
@@ -62,23 +75,40 @@ public class Simulation {
                             .forEach(Appliance::wearOff)));
     }
 
-    public void saveApplianceConsumptions() {
+    /**
+     * Save appliance consumption too statistics
+     */
+    private void saveApplianceConsumptions() {
         //save consumption every tick (hour)
         house.getFloors().forEach(floor -> floor.getRooms()
                 .forEach(room -> room.getAppliances()
                         .forEach(Appliance::saveConsumption)));
     }
 
-    public void iterateRooms() {
+    /**
+     * Iterate rooms
+     * - change temperature in every room if the Heater is ON
+     */
+    private void iterateRooms() {
         house.getFloors().forEach(floor -> floor.getRooms().forEach(Room::changeTemperature));
     }
 
-
-    public void iterateActivities() {
+    /**
+     * Iterate activities
+     * - every activity has its own iteration method
+     */
+    private void iterateActivities() {
         activities.forEach(Activity::iterate);
     }
 
-    public void finishActivities(int i) {
+    /**
+     * Take care of activities that are finished
+     * - if the activity is fix and the appliance/vehicle isn't fixable, buy new appliance/vehicle and replace the old one
+     * - end of activity -> make the appliance or vehicle available and make the creature available too
+     * - if the creature finished activity after active time, make it sleep
+     * @param i - current tick
+     */
+    private void finishActivities(int i) {
         Iterator<Activity> iterator = activities.iterator();
         while (iterator.hasNext()) {
             Activity activity = iterator.next();
@@ -99,7 +129,11 @@ public class Simulation {
         }
     }
 
-    public void buyNewAppliance(Fix fix) {
+    /**
+     * Buy new appliance and replace the old one
+     * @param fix - fix activity
+     */
+    private void buyNewAppliance(Fix fix) {
         if (!fix.getFixable()) {
             Appliance newAppliance = fix.getNewAppliance();
             house.getFloors().forEach(floor -> floor.getRooms().forEach(room -> {
@@ -113,33 +147,25 @@ public class Simulation {
         }
     }
 
-    private void createActivities() {
-        while (creaturePool.hasAvailable()) {
-            Creature creature = creaturePool.useRandom();
-            if (rand.nextBoolean() && appliancePool.hasAvailable()) {
-                Appliance appliance = appliancePool.useRandom();
-                if (House.getInstance().getApplianceRoom(appliance) == House.getInstance().getCreatureRoom(creature)) {
-                    activities.add(new ApplianceActivity(creature, appliance, rand.nextInt(1, 4)));
-                } else{
-                    appliancePool.makeAvailable(appliance);
-                    creaturePool.makeAvailable(creature);
-                }
-
-            } else if (vehiclePool.hasAvailable()) {
-                Vehicle vehicle = vehiclePool.useRandom();
-                if (House.getInstance().getVehicleRoom(vehicle) == House.getInstance().getCreatureRoom(creature)) {
-                    activities.add(new VehicleActivity(creature, vehicle, rand.nextInt(1, 12)));
-                } else {
-                    vehiclePool.makeAvailable(vehicle);
-                    creaturePool.makeAvailable(creature);
-                }
-            } else {
-                activities.add(new WaitingActivity(creature));
-            }
+    /**
+     * Simulate behavior of creatures
+     * @param tick - current tick
+     */
+    public void simulateBehavior(int tick){
+        if (activeTimeForCreature(tick)){
+            House.getInstance().getAllCreatures().forEach(creature -> creature.setSleeping(false));
+            doTodoActivities();
+            createActivities();
+            generateRandomEvent();
         }
     }
 
-    private void createActivitiesNumTWO() {
+    /**
+     * Create activities for creatures
+     * - method trying to simulate the need of creature to use an appliance or vehicle
+     * - if they don't want to use an appliance and all vehicles are used, make them wait and wonder around the house
+     */
+    private void createActivities() {
         while (creaturePool.hasAvailable()) {
             Creature creature = creaturePool.useRandom();
             Room creatureRoom = House.getInstance().getCreatureRoom(creature);
@@ -165,6 +191,10 @@ public class Simulation {
         }
     }
 
+    /**
+     * Get all creatures and check if they have any todo activities
+     * - if they do, remove them from the creature pool and add them to the activities list
+     */
     private void doTodoActivities() {
         Iterator<Creature> iterator = creaturePool.getAvailable().iterator();
         while (iterator.hasNext()) {
@@ -180,7 +210,12 @@ public class Simulation {
         }
     }
 
-    public void generateRandomEvent() {
+    /**
+     * Generate random event for creatures using appliances or vehicles
+     * - 1/5 chance of event
+     * - the event is breaking down the appliance or vehicle
+     */
+    private void generateRandomEvent() {
         if (rand.nextInt(5) == 0) {
             if (!activities.isEmpty()){
                 Activity activity = activities.get(rand.nextInt(activities.size()));
@@ -194,15 +229,10 @@ public class Simulation {
         }
     }
 
-    public void simulateBehavior(int tick){
-        if (activeTimeForCreature(tick)){
-            House.getInstance().getAllCreatures().forEach(creature -> creature.setSleeping(false));
-            doTodoActivities();
-            createActivitiesNumTWO();
-            generateRandomEvent();
-        }
-    }
-
+    /**
+     * @param tick - current tick
+     * @return true if it's active time for creatures (8:00 - 20:00)
+     */
     private boolean activeTimeForCreature(int tick) {
         int begin = 8;
         int end = 20;
@@ -210,17 +240,20 @@ public class Simulation {
         return hourInSimulation >= begin && hourInSimulation <= end;
     }
 
-    public void getConsumptionReport() {
+    private void getConsumptionReport() {
         house.accept(reportVisitor);
     }
 
-    public void getActivityAndUsageReport() {
+    private void getActivityAndUsageReport() {
         ApplianceActivity.printStatistics();
         VehicleActivity.printStatistics();
         WaitingActivity.printStatistics();
     }
 
-    //todo delete later, only for testing purposes
+    /**
+     * Turn on all devices in the house
+     * - for testing purposes
+     */
     public void turnOnAllDevices() {
         house.getFloors().forEach(floor -> floor.getRooms()
                 .forEach(room -> room.getAppliances()

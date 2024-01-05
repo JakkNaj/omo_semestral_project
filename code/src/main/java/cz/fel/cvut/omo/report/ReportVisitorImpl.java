@@ -5,6 +5,9 @@ import cz.fel.cvut.omo.house.Floor;
 import cz.fel.cvut.omo.house.House;
 import cz.fel.cvut.omo.house.Room;
 
+/**
+ * Visitor implemented for report export about appliance consumption
+ */
 public class ReportVisitorImpl implements ReportVisitor{
     @Override
     public void visit(House house) {

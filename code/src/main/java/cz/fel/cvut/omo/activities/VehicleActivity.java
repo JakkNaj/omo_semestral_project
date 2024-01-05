@@ -10,6 +10,9 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class representing an interaction of Person/Creature with a Vehicle
+ */
 public class VehicleActivity extends Activity {
     @Getter
     protected final Vehicle vehicle;
@@ -32,6 +35,9 @@ public class VehicleActivity extends Activity {
         }
     }
 
+    /**
+     * Iterating the activity from simulation (1 iteration = 1 hour)
+     */
     public void iterate(){
         if (timeOfUse == 0){
             vehicle.take();
@@ -48,6 +54,9 @@ public class VehicleActivity extends Activity {
         System.out.println(this);
     }
 
+    /**
+     * Updating statistics about appliance usage
+     */
     protected void updateStatistics(){
         if (!statistics.containsKey(vehicle)){
             statistics.put(vehicle, new HashMap<>());
