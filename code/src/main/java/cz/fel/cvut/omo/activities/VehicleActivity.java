@@ -19,6 +19,17 @@ public class VehicleActivity extends Activity {
     public VehicleActivity(Creature creature, Vehicle vehicle, int timeOfActivity) {
         super(creature, timeOfActivity);
         this.vehicle = vehicle;
+        updateStatistics();
+    }
+
+    public static void printStatistics() {
+        System.out.println("Vehicle statistics:");
+        for (Vehicle vehicle : statistics.keySet()){
+            System.out.println(vehicle + ":");
+            for (Creature creature : statistics.get(vehicle).keySet()){
+                System.out.println("\t" + creature + ": " + statistics.get(vehicle).get(creature));
+            }
+        }
     }
 
     public void iterate(){

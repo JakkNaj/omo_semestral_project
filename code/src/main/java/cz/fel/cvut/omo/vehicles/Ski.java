@@ -4,4 +4,9 @@ public class Ski extends Vehicle{
     public Ski(String name) {
         super(name,0,1);
     }
+
+    @Override
+    public String getType() {
+        return "skis";
+    }
 }

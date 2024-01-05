@@ -27,7 +27,6 @@ public abstract class Activity {
         this.creature = creature;
         this.timeOfUse = 0;
         this.timeOfActivity = timeOfActivity;
-        updateStatistics();
     }
 
     public abstract void iterate();

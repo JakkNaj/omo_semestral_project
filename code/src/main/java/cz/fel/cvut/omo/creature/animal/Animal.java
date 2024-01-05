@@ -20,4 +20,12 @@ public class Animal extends Creature {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

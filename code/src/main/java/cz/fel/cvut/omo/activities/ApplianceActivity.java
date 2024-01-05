@@ -18,6 +18,7 @@ public class ApplianceActivity extends Activity {
     public ApplianceActivity(Creature creature, Appliance appliance, int timeOfActivity) {
         super(creature, timeOfActivity);
         this.appliance = appliance;
+        updateStatistics();
     }
 
     public void iterate(){
@@ -44,6 +45,16 @@ public class ApplianceActivity extends Activity {
             applianceStatistics.put(creature, 1);
         } else {
             applianceStatistics.put(creature, applianceStatistics.get(creature) + 1);
+        }
+    }
+
+    public static void printStatistics(){
+        System.out.println("Appliance statistics:");
+        for (Appliance appliance : statistics.keySet()){
+            System.out.println(appliance + ":");
+            for (Creature creature : statistics.get(appliance).keySet()){
+                System.out.println("\t" + creature + ": " + statistics.get(appliance).get(creature));
+            }
         }
     }
 

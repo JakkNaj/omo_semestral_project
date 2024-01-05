@@ -46,6 +46,7 @@ public class Simulation {
 
     public void report() {
         getConsumptionReport();
+        getActivityAndUsageReport();
     }
 
     public void iterateAppliances(int i) {
@@ -111,11 +112,6 @@ public class Simulation {
             }));
         }
     }
-
-    public void getConsumptionReport() {
-        house.accept(reportVisitor);
-    }
-
 
     private void createActivities() {
         while (creaturePool.hasAvailable()) {
@@ -212,6 +208,16 @@ public class Simulation {
         int end = 20;
         int hourInSimulation = tick % 24;
         return hourInSimulation >= begin && hourInSimulation <= end;
+    }
+
+    public void getConsumptionReport() {
+        house.accept(reportVisitor);
+    }
+
+    public void getActivityAndUsageReport() {
+        ApplianceActivity.printStatistics();
+        VehicleActivity.printStatistics();
+        WaitingActivity.printStatistics();
     }
 
     //todo delete later, only for testing purposes

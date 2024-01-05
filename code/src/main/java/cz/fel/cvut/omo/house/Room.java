@@ -177,4 +177,9 @@ public class Room implements Observable {
     public void acceptEvent(Event event){
         notifyAll(event);
     }
+
+    @Override
+    public String toString() {
+        return "Room{" + this.getName() + "}";
+    }
 }

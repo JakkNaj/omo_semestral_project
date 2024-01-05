@@ -133,4 +133,9 @@ public abstract class Appliance implements ApplianceContext {
         Random random = new Random();
         return actions.isEmpty() ? null : actions.get(random.nextInt(actions.size()));
     }
+
+    @Override
+    public String toString() {
+        return this.getType() + " - " + House.getInstance().getApplianceRoom(this);
+    }
 }

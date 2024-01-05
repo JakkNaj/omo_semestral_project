@@ -37,4 +37,13 @@ public abstract class Vehicle {
     public void store(){
         this.inUse = false;
     }
+
+    @Override
+    public String toString() {
+        return getType();
+    }
+
+    public String getType(){
+        return "generic vehicle";
+    }
 }

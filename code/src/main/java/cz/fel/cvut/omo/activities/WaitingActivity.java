@@ -13,6 +13,7 @@ public class WaitingActivity extends Activity {
 
     public WaitingActivity(Creature creature){
         super(creature, 1);
+        updateStatistics();
     }
 
     @Override
@@ -37,5 +38,12 @@ public class WaitingActivity extends Activity {
                 "timeOfUse=" + timeOfUse +
                 ", timeOfActivity=" + timeOfActivity +
                 '}';
+    }
+
+    public static void printStatistics(){
+        System.out.println("Waiting statistics:");
+        for (Creature creature : statistics.keySet()){
+            System.out.println(creature + ": " + statistics.get(creature));
+        }
     }
 }

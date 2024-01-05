@@ -137,8 +137,8 @@ public class Main {
                 person = personFactory.createAdult();
             else
                 person = personFactory.createElder();
-            person.setFirstName("Firstname_ " + i);
-            person.setLastName("Surname_ " + i);
+            person.setFirstName("name_" + i);
+            person.setLastName("lastname_" + i);
             rooms.get(i).addCreature(person);
         }
         for (int i = 0; i < 3; i++) {
@@ -151,6 +151,7 @@ public class Main {
                 animal = animalFactory.createDog();
             else
                 animal = animalFactory.createSnake();
+            animal.setName("pet_" + i);
             rooms.get(i).addCreature(animal);
         }
     }
