@@ -52,7 +52,7 @@ public class Main {
         sim.report();
     }
 
-    private static House loadHouseFromJSON(){
+    private static House loadHouseFromJSON() {
         try {
             return House.loadFromJson(Main.CONFIGURATION);
         } catch (Exception e) {
@@ -61,14 +61,14 @@ public class Main {
         }
     }
 
-    private static House buildHouseFromBuilder(){
+    private static House buildHouseFromBuilder() {
         HouseBuilder houseBuilder = new HouseBuilder();
         FloorBuilder floorBuilder = new FloorBuilder(0);
         FloorBuilder floorBuilder1 = new FloorBuilder(1);
-        RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room",22,2);
-        RoomBuilder roomBuilderLivingR2 = new RoomBuilder("Living room",22,2);
-        RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen",21,3);
-        RoomBuilder roomBuilderBedroom = new RoomBuilder("Bedroom",19,1);
+        RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room", 22, 2);
+        RoomBuilder roomBuilderLivingR2 = new RoomBuilder("Living room", 22, 2);
+        RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen", 21, 3);
+        RoomBuilder roomBuilderBedroom = new RoomBuilder("Bedroom", 19, 1);
 
         House house = houseBuilder.addFloor(
                         floorBuilder.addRoom(
@@ -79,7 +79,7 @@ public class Main {
                                                 .addAppliance(new TreadmillImpl(Arrays.asList(60.0, 0.0, 0.0)))
                                                 .build())
                                 .addRoom(
-                                        new RoomBuilder("Garage",15,5)
+                                        new RoomBuilder("Garage", 15, 5)
                                                 .addWindow(new WindowBuilder().addBlinds().build())
                                                 .addVehicle(VehicleFactory.getInstance().createCar("Skoda"))
                                                 .addVehicle(VehicleFactory.getInstance().createBike("Detske"))
@@ -88,42 +88,45 @@ public class Main {
                                                 .addAppliance(new TreadmillImpl(Arrays.asList(60.0, 0.0, 0.0)))
                                                 .build())
                                 .addDoor("Garage", "Living room")
-                                .addRoom(new Room("Outside",0,100))
-                                .addDoor("Garage","Outside")
+                                .addRoom(new Room("Outside", 0, 100))
+                                .addDoor("Garage", "Outside")
                                 .build())
-                    .addFloor(
-                            floorBuilder1.addRoom(
-                                            roomBuilderKitchen.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
-                                                    .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
-                                                    .addAppliance(new WashingMachineImpl(Arrays.asList(100.0, 100.0, 0.0)))
-                                                    .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
-                                                    .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
-                                                    .build())
-                            .addRoom(
-                                            roomBuilderLivingR2.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
-                                                    .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
-                                                    .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
-                                                    .addAppliance(new TreadmillImpl(Arrays.asList(60.0, 0.0, 0.0)))
-                                                    .build())
-                            .addRoom(
-                                    roomBuilderBedroom.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
-                                            .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
-                                            .addAppliance(new TelevisionImpl(Arrays.asList(100.0, 0.0, 0.0)))
-                                            .addAppliance(new PlaystationImpl(Arrays.asList(50.0, 0.0, 0.0)))
-                                            .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
-                                            .build())
-                            .build()
-                    )
-                    .build();
+                .addFloor(
+                        floorBuilder1.addRoom(
+                                        roomBuilderKitchen.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
+                                                .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
+                                                .addAppliance(new WashingMachineImpl(Arrays.asList(100.0, 100.0, 0.0)))
+                                                .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
+                                                .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
+                                                .build())
+                                .addRoom(
+                                        roomBuilderLivingR2.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
+                                                .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
+                                                .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
+                                                .addAppliance(new TreadmillImpl(Arrays.asList(60.0, 0.0, 0.0)))
+                                                .build())
+                                .addRoom(
+                                        roomBuilderBedroom.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
+                                                .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
+                                                .addAppliance(new TelevisionImpl(Arrays.asList(100.0, 0.0, 0.0)))
+                                                .addAppliance(new PlaystationImpl(Arrays.asList(50.0, 0.0, 0.0)))
+                                                .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
+                                                .build())
+                                .addDoor("Kitchen", "Living room")
+                                .addRoom(new Room("Outside", 0, 100))
+                                .addDoor("Bedroom", "Living room")
+                                .build()
+                )
+                .build();
 
         return house;
     }
 
-    private static void addCreatures(List<Room> rooms){
+    private static void addCreatures(List<Room> rooms) {
         PersonFactory personFactory = PersonFactory.getInstance();
         AnimalFactory animalFactory = AnimalFactory.getInstance();
         Collections.shuffle(rooms);
-        for (int i = 0; i< rooms.size(); i++){
+        for (int i = 0; i < rooms.size(); i++) {
             Person person;
             if (i == 0)
                 person = personFactory.createBaby();
@@ -137,7 +140,7 @@ public class Main {
             person.setLastName("Surname_ " + i);
             rooms.get(i).addCreature(person);
         }
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             Animal animal;
             if (i == 0)
                 animal = animalFactory.createCat();
