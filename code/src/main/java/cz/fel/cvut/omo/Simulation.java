@@ -121,14 +121,49 @@ public class Simulation {
                 Appliance appliance = appliancePool.useRandom();
                 if (House.getInstance().getApplianceRoom(appliance) == House.getInstance().getCreatureRoom(creature)) {
                     activities.add(new ApplianceActivity(creature, appliance, rand.nextInt(1, 4)));
+                } else{
+                    appliancePool.makeAvailable(appliance);
+                    creaturePool.makeAvailable(creature);
                 }
+
             } else if (vehiclePool.hasAvailable()) {
                 Vehicle vehicle = vehiclePool.useRandom();
                 if (House.getInstance().getVehicleRoom(vehicle) == House.getInstance().getCreatureRoom(creature)) {
                     activities.add(new VehicleActivity(creature, vehicle, rand.nextInt(1, 12)));
+                } else {
+                    vehiclePool.makeAvailable(vehicle);
+                    creaturePool.makeAvailable(creature);
                 }
             } else {
                 activities.add(new WaitingActivity(creature));
+            }
+        }
+    }
+
+    private void createActivitiesNumTWO() {
+        while (creaturePool.hasAvailable()) {
+            Creature creature = creaturePool.useRandom();
+            Room creatureRoom = House.getInstance().getCreatureRoom(creature);
+            if (rand.nextBoolean() && appliancePool.hasAvailable()) {
+                Appliance appliance = appliancePool.useRandom();
+                Room ApplianceRoom = House.getInstance().getApplianceRoom(appliance);
+                activities.add(new ApplianceActivity(creature, appliance, rand.nextInt(1, 4)));
+                if (ApplianceRoom != creatureRoom){
+                    creatureRoom.removeCreature(creature);
+                    ApplianceRoom.addCreature(creature);
+                }
+            } else if (vehiclePool.hasAvailable()) {
+                Vehicle vehicle = vehiclePool.useRandom();
+                Room VehicleRoom = House.getInstance().getVehicleRoom(vehicle);
+                activities.add(new VehicleActivity(creature, vehicle, rand.nextInt(1, 4)));
+                if (VehicleRoom != creatureRoom){
+                    creatureRoom.removeCreature(creature);
+                    VehicleRoom.addCreature(creature);
+                }
+            } else {
+                activities.add(new WaitingActivity(creature));
+                //todo repair
+                //creatureRoom.tryToMoveCreatures();
             }
         }
     }
@@ -164,7 +199,7 @@ public class Simulation {
     public void simulateBehavior(int tick){
         if (activeTimeForCreature(tick)){
             doTodoActivities();
-            createActivities();
+            createActivitiesNumTWO();
             generateRandomEvent();
         }
     }

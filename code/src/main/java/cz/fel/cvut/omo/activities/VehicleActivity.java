@@ -3,6 +3,7 @@ package cz.fel.cvut.omo.activities;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.appliances.states.BrokenState;
 import cz.fel.cvut.omo.creature.Creature;
+import cz.fel.cvut.omo.house.House;
 import cz.fel.cvut.omo.vehicles.Vehicle;
 import lombok.Getter;
 
@@ -22,13 +23,15 @@ public class VehicleActivity extends Activity {
 
     public void iterate(){
         if (timeOfUse == 0){
+            House house = House.getInstance();
             vehicle.take();
             vehicle.setInUse(true);
-        } else if (timeOfUse == timeOfActivity) {
+        }
+        timeOfUse++;
+        if (timeOfUse == timeOfActivity) {
             vehicle.store();
             vehicle.setInUse(false);
         }
-        timeOfUse++;
         if (vehicle.isBroken()){
             timeOfUse = timeOfActivity;
         }

@@ -20,7 +20,7 @@ public abstract class Appliance implements ApplianceContext {
     private ApplianceState state;
     private final List<Double> consumption;
 
-    private List<Double> sumConsumption = new ArrayList<>(List.of(0.0, 0.0, 0.0));
+    private List<Double> sumConsumption = new ArrayList<>();
 
     protected List<Runnable> actions = new ArrayList<>();
 
@@ -31,6 +31,8 @@ public abstract class Appliance implements ApplianceContext {
         this.consumption = consumption;
         this.wearTear = wearTear;
         this.state = new OffState();
+        for (int i = 0; i < consumption.size(); i++)
+            sumConsumption.add(0.0);
     }
 
     @Override
@@ -98,14 +100,16 @@ public abstract class Appliance implements ApplianceContext {
     //use each hour on appliance tick
     public void saveConsumption(){
         List<Double> currentConsumption = getCurrentConsumption();
-        for (int i = 0; i < consumption.size(); i++){
-            sumConsumption.add(currentConsumption.get(i));
+        for (int i = 0; i < currentConsumption.size(); i++){
+            sumConsumption.set(i, sumConsumption.get(i) + currentConsumption.get(i));
         }
     }
 
     public List<Double> getSumConsumption(){
         List<Double> sum = sumConsumption;
-        sumConsumption = List.of(0.0, 0.0, 0.0);
+        sumConsumption = new ArrayList<>();
+        for (int i = 0; i < consumption.size(); i++)
+            sumConsumption.add(0.0);
         return sum;
     }
 

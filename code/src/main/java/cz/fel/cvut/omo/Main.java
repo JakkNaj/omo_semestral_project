@@ -28,7 +28,7 @@ import java.util.Random;
 public class Main {
 
     // One iteration is one hour
-    private static final int ITERATIONS = 10 * 24;
+    private static final int ITERATIONS = 24;
 
     private static final String CONFIGURATION = "houseConfig.json";
 
@@ -66,6 +66,7 @@ public class Main {
         FloorBuilder floorBuilder = new FloorBuilder(0);
         FloorBuilder floorBuilder1 = new FloorBuilder(1);
         RoomBuilder roomBuilderLivingR = new RoomBuilder("Living room",22,2);
+        RoomBuilder roomBuilderLivingR2 = new RoomBuilder("Living room",22,2);
         RoomBuilder roomBuilderKitchen = new RoomBuilder("Kitchen",21,3);
         RoomBuilder roomBuilderBedroom = new RoomBuilder("Bedroom",19,1);
 
@@ -99,7 +100,7 @@ public class Main {
                                                     .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
                                                     .build())
                             .addRoom(
-                                            roomBuilderLivingR.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
+                                            roomBuilderLivingR2.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
                                                     .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                                     .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
                                                     .addAppliance(new TreadmillImpl(Arrays.asList(60.0, 0.0, 0.0)))

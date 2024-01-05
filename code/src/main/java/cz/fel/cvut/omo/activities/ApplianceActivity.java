@@ -24,10 +24,11 @@ public class ApplianceActivity extends Activity {
         if (timeOfUse == 0){
             appliance.turnOn();
             appliance.use();
-        } else if (timeOfUse == timeOfActivity) {
-            appliance.turnOff();
         }
         timeOfUse++;
+        if (timeOfUse == timeOfActivity) {
+            appliance.turnOff();
+        }
         if (appliance.getState() instanceof BrokenState){
             timeOfUse = timeOfActivity;
         }
