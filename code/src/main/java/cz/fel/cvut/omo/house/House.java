@@ -119,4 +119,12 @@ public class House {
         });
         return vehicles;
     }
+
+    public List<Room> getAllRooms(){
+        List<Room> rooms = new ArrayList<>();
+        floors.forEach(floor -> {
+            rooms.addAll(floor.getRooms());
+        });
+        return rooms;
+    }
 }

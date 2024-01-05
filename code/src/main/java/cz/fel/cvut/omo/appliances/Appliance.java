@@ -9,6 +9,7 @@ import cz.fel.cvut.omo.house.Room;
 import cz.fel.cvut.omo.report.ReportVisitor;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -19,9 +20,9 @@ public abstract class Appliance implements ApplianceContext {
     private ApplianceState state;
     private final List<Double> consumption;
 
-    private List<Double> sumConsumption = List.of(0.0, 0.0, 0.0);
+    private List<Double> sumConsumption = new ArrayList<>(List.of(0.0, 0.0, 0.0));
 
-    protected List<Runnable> actions;
+    protected List<Runnable> actions = new ArrayList<>();
 
     @Getter
     private final String manual = "repair manual for appliance";

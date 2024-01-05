@@ -14,7 +14,7 @@ public class Fix extends ApplianceActivity{
     @Getter
     private Boolean fixable;
 
-    private Random random;
+    private Random random = new Random();
 
     public Fix(Creature creature, Appliance appliance) {
         super(creature, appliance, 200);

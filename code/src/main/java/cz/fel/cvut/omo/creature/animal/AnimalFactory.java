@@ -16,8 +16,28 @@ public class AnimalFactory {
         return INSTANCE;
     }
 
-    public Animal createAnimal() {
-        return new Animal();
+    public Animal createSnake(){
+        Animal snake = new Animal();
+        snake.setType(AnimalType.SNAKE);
+        return snake;
+    }
+
+    public Animal createCat(){
+        Animal cat = new Animal();
+        cat.setType(AnimalType.CAT);
+        return cat;
+    }
+
+    public Animal createDog(){
+        Animal dog = new Animal();
+        dog.setType(AnimalType.DOG);
+        return dog;
+    }
+
+    public Animal createParrot(){
+        Animal parrot = new Animal();
+        parrot.setType(AnimalType.PARROT);
+        return parrot;
     }
 }
 

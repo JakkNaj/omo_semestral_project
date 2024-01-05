@@ -134,24 +134,29 @@ public class Simulation {
     }
 
     private void doTodoActivities() {
-        creaturePool.getAvailable().forEach(creature -> {
+        Iterator<Creature> iterator = creaturePool.getAvailable().iterator();
+        while (iterator.hasNext()) {
+            Creature creature = iterator.next();
             if (creature instanceof Person person) {
                 Activity activity = person.getFirstTodoActivity();
                 if (activity != null) {
+                    iterator.remove();  // Remove the current element
                     creaturePool.useResource(creature);
                     activities.add(activity);
                 }
             }
-        });
+        }
     }
 
     public void generateRandomEvent() {
         if (rand.nextInt(5) == 0) {
-            Activity activity = activities.get(rand.nextInt(activities.size()));
-            if (activity instanceof VehicleActivity vehicleActivity) {
-                activity.getCreature().generateEvent(House.getInstance().getVehicleRoom(vehicleActivity.getVehicle()), vehicleActivity.getVehicle());
-            } else if(activity instanceof ApplianceActivity applianceActivity){
-                activity.getCreature().generateEvent(House.getInstance().getApplianceRoom(applianceActivity.getAppliance()), applianceActivity.getAppliance());
+            if (!activities.isEmpty()){
+                Activity activity = activities.get(rand.nextInt(activities.size()));
+                if (activity instanceof VehicleActivity vehicleActivity) {
+                    activity.getCreature().generateEvent(House.getInstance().getVehicleRoom(vehicleActivity.getVehicle()), vehicleActivity.getVehicle());
+                } else if(activity instanceof ApplianceActivity applianceActivity){
+                    activity.getCreature().generateEvent(House.getInstance().getApplianceRoom(applianceActivity.getAppliance()), applianceActivity.getAppliance());
+                }
             }
         }
     }
