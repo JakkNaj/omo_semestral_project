@@ -12,4 +12,13 @@ public class BrokenApplianceEvent extends Event {
         super(where, reason);
         this.appliance = appliance;
     }
+
+    @Override
+    public String toString() {
+        return "BrokenApplianceEvent{" +
+                "appliance=" + appliance +
+                ", where='" + where + '\'' +
+                ", reason='" + reason + '\'' +
+                '}';
+    }
 }

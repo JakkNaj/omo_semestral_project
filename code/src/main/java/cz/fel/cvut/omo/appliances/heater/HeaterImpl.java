@@ -42,7 +42,7 @@ public class HeaterImpl extends Appliance implements Heater, Observer {
         File file = new File("HeaterLog.txt");
         file.createNewFile();
         FileWriter fw = new FileWriter(file.getName(), true);
-        fw.write("Heater " + event.getWhere() + " accepted event with reason " + event.getReason() + "\n\r");
+        fw.write("Heater accepted " + event + "\n\r");
         fw.close();
         //System.out.println("heaterEvent");
     }

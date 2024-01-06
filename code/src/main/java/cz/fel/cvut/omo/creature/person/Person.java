@@ -86,7 +86,7 @@ public class Person extends Creature implements Observer {
           File file = new File("PersonLog.txt");
           file.createNewFile();
           FileWriter fw = new FileWriter(file.getName(), true);
-          fw.write("Person " + getName() + " accepted event from " +  event.getWhere() + " with reason " + event.getReason() + "\n\r");
+          fw.write("Person " + getName() + " accepted " +  event + "\n\r");
           fw.close();
           //System.out.println("PersonEvent");
      }

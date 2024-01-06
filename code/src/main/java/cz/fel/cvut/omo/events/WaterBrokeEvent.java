@@ -11,4 +11,13 @@ public class WaterBrokeEvent extends Event{
         super(source, cause);
         this.appliance = appliance;
     }
+
+    @Override
+    public String toString() {
+        return "WaterBrokeEvent{" +
+                "appliance=" + appliance +
+                ", where='" + where + '\'' +
+                ", reason='" + reason + '\'' +
+                '}';
+    }
 }

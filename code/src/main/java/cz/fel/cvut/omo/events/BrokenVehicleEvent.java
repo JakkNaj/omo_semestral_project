@@ -13,4 +13,13 @@ public class BrokenVehicleEvent extends Event {
         super(where, reason);
         this.vehicle = vehicle;
     }
+
+    @Override
+    public String toString() {
+        return "BrokenVehicleEvent{" +
+                "vehicle=" + vehicle +
+                ", where='" + where + '\'' +
+                ", reason='" + reason + '\'' +
+                '}';
+    }
 }

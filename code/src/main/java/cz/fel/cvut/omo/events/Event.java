@@ -13,9 +13,9 @@ import lombok.Setter;
 @Setter
 public class Event {
 
-    private String where;
+    protected String where;
 
-    private String reason;
+    protected String reason;
 
     /**
      * @param where is place, where Event happened
@@ -24,5 +24,13 @@ public class Event {
     public Event(String where, String reason) {
         this.where = where;
         this.reason = reason;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "where='" + where + '\'' +
+                ", reason='" + reason + '\'' +
+                '}';
     }
 }
