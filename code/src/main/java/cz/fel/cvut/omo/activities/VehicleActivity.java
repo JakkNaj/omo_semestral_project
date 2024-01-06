@@ -51,7 +51,7 @@ public class VehicleActivity extends Activity {
         if (vehicle.isBroken()){
             timeOfUse = timeOfActivity;
         }
-        System.out.println(this);
+        //System.out.println(this);
     }
 
     /**

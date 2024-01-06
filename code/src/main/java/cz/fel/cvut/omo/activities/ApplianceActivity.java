@@ -39,7 +39,7 @@ public class ApplianceActivity extends Activity {
         if (appliance.getState() instanceof BrokenState){
             timeOfUse = timeOfActivity;
         }
-        System.out.println(this);
+        //System.out.println(this);
     }
 
     /**
