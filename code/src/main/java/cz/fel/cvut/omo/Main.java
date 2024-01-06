@@ -20,6 +20,9 @@ import cz.fel.cvut.omo.house.House;
 import cz.fel.cvut.omo.house.Room;
 import cz.fel.cvut.omo.vehicles.VehicleFactory;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -32,11 +35,16 @@ import java.util.Random;
 public class Main {
 
     // One iteration is one hour
-    private static final int ITERATIONS = 24 * 31 * 12 * 100;
+    private static final int ITERATIONS = 24;
 
     private static final String CONFIGURATION = "houseConfig.json";
 
     public static void main(String[] args) {
+        File file = new File("HeaterLog.txt");
+        file.delete();
+        file = new File("PersonLog.txt");
+        file.delete();
+
         //House house = loadHouseFromJSON();
         House house = buildHouseFromBuilder();
         addCreatures(house.getAllRooms());

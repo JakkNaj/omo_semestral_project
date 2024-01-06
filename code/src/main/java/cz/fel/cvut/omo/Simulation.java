@@ -10,6 +10,8 @@ import cz.fel.cvut.omo.objectPool.ResourcePool;
 import cz.fel.cvut.omo.report.ReportVisitorImpl;
 import cz.fel.cvut.omo.vehicles.Vehicle;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.*;
 
 /**
@@ -32,6 +34,8 @@ public class Simulation {
 
     private Random rand = new Random();
 
+    private PrintStream console;
+
     public Simulation(House house) {
         this.house = house;
         reportVisitor = new ReportVisitorImpl();
@@ -42,6 +46,7 @@ public class Simulation {
 
     /**
      * Simulate one iteration of the simulation
+     *
      * @param i - current iteration
      */
     public void iterate(int i) {
@@ -65,6 +70,7 @@ public class Simulation {
     /**
      * Wear off appliances
      * - the appliance can be broken this way
+     *
      * @param i - current tick
      */
     private void wearOffAppliances(int i) {
@@ -90,7 +96,10 @@ public class Simulation {
      * - change temperature in every room if the Heater is ON
      */
     private void iterateRooms() {
-        house.getFloors().forEach(floor -> floor.getRooms().forEach(Room::changeTemperature));
+        house.getFloors().forEach(floor -> floor.getRooms().forEach(room -> {
+            room.changeTemperature();
+            room.generateEvent();
+        }));
     }
 
     /**
@@ -106,6 +115,7 @@ public class Simulation {
      * - if the activity is fix and the appliance/vehicle isn't fixable, buy new appliance/vehicle and replace the old one
      * - end of activity -> make the appliance or vehicle available and make the creature available too
      * - if the creature finished activity after active time, make it sleep
+     *
      * @param i - current tick
      */
     private void finishActivities(int i) {
@@ -121,7 +131,7 @@ public class Simulation {
                     vehiclePool.makeAvailable(((VehicleActivity) activity).getVehicle());
                 }
                 creaturePool.makeAvailable(activity.getCreature());
-                if (!activeTimeForCreature(i)){
+                if (!activeTimeForCreature(i)) {
                     activity.getCreature().sleep();
                 }
                 iterator.remove();
@@ -131,6 +141,7 @@ public class Simulation {
 
     /**
      * Buy new appliance and replace the old one
+     *
      * @param fix - fix activity
      */
     private void buyNewAppliance(Fix fix) {
@@ -149,10 +160,11 @@ public class Simulation {
 
     /**
      * Simulate behavior of creatures
+     *
      * @param tick - current tick
      */
-    public void simulateBehavior(int tick){
-        if (activeTimeForCreature(tick)){
+    public void simulateBehavior(int tick) {
+        if (activeTimeForCreature(tick)) {
             House.getInstance().getAllCreatures().forEach(creature -> creature.setSleeping(false));
             doTodoActivities();
             createActivities();
@@ -173,7 +185,7 @@ public class Simulation {
                 Appliance appliance = appliancePool.useRandom();
                 Room ApplianceRoom = House.getInstance().getApplianceRoom(appliance);
                 activities.add(new ApplianceActivity(creature, appliance, rand.nextInt(1, 4)));
-                if (ApplianceRoom != creatureRoom){
+                if (ApplianceRoom != creatureRoom) {
                     creatureRoom.removeCreature(creature);
                     ApplianceRoom.addCreature(creature);
                 }
@@ -181,7 +193,7 @@ public class Simulation {
                 Vehicle vehicle = vehiclePool.useRandom();
                 Room VehicleRoom = House.getInstance().getVehicleRoom(vehicle);
                 activities.add(new VehicleActivity(creature, vehicle, rand.nextInt(1, 4)));
-                if (VehicleRoom != creatureRoom){
+                if (VehicleRoom != creatureRoom) {
                     creatureRoom.removeCreature(creature);
                     VehicleRoom.addCreature(creature);
                 }
@@ -217,11 +229,11 @@ public class Simulation {
      */
     private void generateRandomEvent() {
         if (rand.nextInt(5) == 0) {
-            if (!activities.isEmpty()){
+            if (!activities.isEmpty()) {
                 Activity activity = activities.get(rand.nextInt(activities.size()));
                 if (activity instanceof VehicleActivity vehicleActivity) {
                     activity.getCreature().generateEvent(House.getInstance().getVehicleRoom(vehicleActivity.getVehicle()), vehicleActivity.getVehicle());
-                } else if(activity instanceof ApplianceActivity applianceActivity){
+                } else if (activity instanceof ApplianceActivity applianceActivity) {
                     activity.getCreature().generateEvent(House.getInstance().getApplianceRoom(applianceActivity.getAppliance()), applianceActivity.getAppliance());
                 }
                 activities.remove(activity);
@@ -241,13 +253,37 @@ public class Simulation {
     }
 
     private void getConsumptionReport() {
+        redirectOutputIntoFile("ConsumptionReport.txt");
         house.accept(reportVisitor);
+        redirectOutputBackToConsole();
     }
 
     private void getActivityAndUsageReport() {
+        redirectOutputIntoFile("ApplianceActivityReport.txt");
         ApplianceActivity.printStatistics();
+
+        redirectOutputIntoFile("VehicleActivityReport.txt");
         VehicleActivity.printStatistics();
+
+        redirectOutputIntoFile("WaitingActivityReport.txt");
         WaitingActivity.printStatistics();
+
+        redirectOutputBackToConsole();
+    }
+
+    private void redirectOutputIntoFile(String filename) {
+        console = System.out;
+        try {
+            PrintStream file = new PrintStream(filename);
+            System.setOut(file);
+        } catch (FileNotFoundException e) {
+            System.setOut(console);
+        }
+
+    }
+
+    private void redirectOutputBackToConsole() {
+        System.setOut(console);
     }
 
     /**

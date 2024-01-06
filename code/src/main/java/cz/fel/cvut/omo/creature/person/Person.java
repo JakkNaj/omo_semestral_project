@@ -12,6 +12,8 @@ import cz.fel.cvut.omo.observer.Observer;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +83,12 @@ public class Person extends Creature implements Observer {
 
      @Override
      public void logEvent(Event event) throws IOException {
-          //todo do souboru
+          File file = new File("PersonLog.txt");
+          file.createNewFile();
+          FileWriter fw = new FileWriter(file.getName(), true);
+          fw.write("Person " + getName() + " accepted event from " +  event.getWhere() + " with reason " + event.getReason() + "\n\r");
+          fw.close();
+          //System.out.println("PersonEvent");
      }
 
      @Override
