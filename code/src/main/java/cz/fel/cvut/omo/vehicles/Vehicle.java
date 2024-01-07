@@ -43,7 +43,5 @@ public abstract class Vehicle {
         return getType();
     }
 
-    public String getType(){
-        return "generic vehicle";
-    }
+    public abstract String getType();
 }

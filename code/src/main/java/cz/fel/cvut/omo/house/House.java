@@ -51,6 +51,13 @@ public class House {
         ;
     }
 
+    /**
+     * finds room in which creature is
+     *
+     * @param creature creature
+     * @return room instance, in which the creature is
+     */
+
     public Room getCreatureRoom(Creature creature) {
         AtomicReference<Room> result = new AtomicReference<>();
         floors.forEach(floor -> {
@@ -63,6 +70,12 @@ public class House {
         return result.get();
     }
 
+    /**
+     * finds room, i which the appliance is
+     *
+     * @param appliance appliance
+     * @return room instance, in which the appliance is
+     */
     public Room getApplianceRoom(Appliance appliance) {
         AtomicReference<Room> result = new AtomicReference<>();
         floors.forEach(floor -> {
@@ -75,6 +88,12 @@ public class House {
         return result.get();
     }
 
+    /**
+     * finds room, i which the vehicle is
+     *
+     * @param vehicle vehicle
+     * @return room instance, in which the vehicle is
+     */
     public Room getVehicleRoom(Vehicle vehicle) {
         AtomicReference<Room> result = new AtomicReference<>();
         floors.forEach(floor -> {
@@ -87,6 +106,12 @@ public class House {
         return result.get();
     }
 
+
+    /**
+     * finds all creatures from house
+     *
+     * @return all creatures, that live in house
+     */
     public List<Creature> getAllCreatures() {
         List<Creature> creatures = new ArrayList<>();
         floors.forEach(floor -> {
@@ -97,6 +122,11 @@ public class House {
         return creatures;
     }
 
+    /**
+     * finds all appliances from house
+     *
+     * @return all appliances, that are in house
+     */
     public List<Appliance> getAllAppliances() {
         List<Appliance> appliances = new ArrayList<>();
         floors.forEach(floor -> {
@@ -107,6 +137,11 @@ public class House {
         return appliances;
     }
 
+    /**
+     * finds all vehicles from house
+     *
+     * @return all vehicles, that are in house
+     */
     public List<Vehicle> getAllVehicles() {
         List<Vehicle> vehicles = new ArrayList<>();
         floors.forEach(floor -> {
@@ -117,7 +152,7 @@ public class House {
         return vehicles;
     }
 
-    public List<Room> getAllRooms(){
+    public List<Room> getAllRooms() {
         List<Room> rooms = new ArrayList<>();
         floors.forEach(floor -> {
             rooms.addAll(floor.getRooms());

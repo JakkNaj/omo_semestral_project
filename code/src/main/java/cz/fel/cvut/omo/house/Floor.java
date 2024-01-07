@@ -30,6 +30,11 @@ public class Floor {
         rooms.add(room);
     }
 
+    /**
+     * finds room by its name
+     * @param name name of room
+     * @return room instance
+     */
     public Room getRoom(String name){
         for(Room room : rooms){
             if(room.getName().equals(name)){

@@ -86,12 +86,6 @@ public class Room implements Observable {
             unsubscribe((Observer) appliance);
     }
 
-    public void addPerson(Person person) {
-        creatures.add(person);
-        //person subscribe this, so the newly generated events can be observed
-        subscribe(person);
-    }
-
     public void accept(ReportVisitor reportVisitor) {
         reportVisitor.visit(this);
         appliances.forEach(appliance -> {
@@ -155,6 +149,9 @@ public class Room implements Observable {
             subscribe((Person) creature);
     }
 
+    /**
+     * if there is heater in room and is on, increase room temperature, else decrease room temperature
+     */
     public void changeTemperature() {
         for (Appliance appliance : appliances) {
             if (appliance instanceof Heater heater) {
@@ -168,12 +165,18 @@ public class Room implements Observable {
         //throw new IllegalAccessException("no heater in room");
     }
 
+    /**
+     * sets wanted temperature, and how much can actual temperature deviate from it
+     *
+     * @param wantedTemperature  temperature to be achieved
+     * @param deltaOfTemperature temperature deviation
+     */
     public void setTemperature(int wantedTemperature, int deltaOfTemperature) {
         this.wantedTemperature = wantedTemperature;
         this.deltaOfTemperature = deltaOfTemperature;
     }
 
-    public void acceptEvent(Event event){
+    public void acceptEvent(Event event) {
         notifyAll(event);
     }
 
