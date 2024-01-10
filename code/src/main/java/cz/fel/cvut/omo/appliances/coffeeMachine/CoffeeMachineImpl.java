@@ -3,6 +3,7 @@ package cz.fel.cvut.omo.appliances.coffeeMachine;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.appliances.states.OnState;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
@@ -11,13 +12,13 @@ public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
 
     private double waterRatio = 0;
 
-    private CoffeeMachineStates coffeeMachineState = CoffeeMachineStates.NEEDS_COFFEE;
+    private CoffeeMachineStates coffeeMachineState;
 
 
     public CoffeeMachineImpl(List<Double> consumption) {
         super(consumption, 365 * 24);
-        actions.add(this::makeEspresso);
-        actions.add(this::makeTurek);
+        this.coffeeMachineState = CoffeeMachineStates.NEEDS_COFFEE;
+        configureRunnableActions();
     }
 
     @Override
@@ -75,5 +76,12 @@ public class CoffeeMachineImpl extends Appliance implements CoffeeMachine {
     @Override
     public String getType() {
         return "Coffee machine";
+    }
+
+    @Override
+    public void configureRunnableActions() {
+        actions = new ArrayList<>();
+        actions.add(this::makeEspresso);
+        actions.add(this::makeTurek);
     }
 }

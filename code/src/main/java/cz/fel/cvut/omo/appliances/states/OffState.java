@@ -7,12 +7,12 @@ import java.util.List;
 
 @NoArgsConstructor
 public class OffState extends ApplianceState {
-    private final double consumptionRatio = 0;
 
     @Override
     public List<Double> getCurrentConsumption(List<Double> consumption) {
         List<Double> outcome = new ArrayList<>();
-        consumption.forEach(con -> outcome.add(con * consumptionRatio));
+        this.setConsumptionRatio(0);
+        consumption.forEach(con -> outcome.add(con * this.getConsumptionRatio()));
         return outcome;
     }
 

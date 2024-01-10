@@ -28,7 +28,7 @@ public abstract class Creature implements CreatureInterface {
 
     private boolean sleeping = false;
 
-    private Random rand = new Random();
+    private transient Random rand = new Random();
 
     @Override
     public void age() {
@@ -79,5 +79,9 @@ public abstract class Creature implements CreatureInterface {
     public void generateEvent(Room room, Vehicle vehicle) {
         vehicle.setBroken(true);
         room.acceptEvent(new BrokenVehicleEvent(room.getName(), "cause why not, " + this.getName(), vehicle));
+    }
+
+    public void initRandom() {
+        rand = new Random();
     }
 }

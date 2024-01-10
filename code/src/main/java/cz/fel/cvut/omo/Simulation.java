@@ -4,6 +4,7 @@ import cz.fel.cvut.omo.activities.*;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.creature.person.Person;
+import cz.fel.cvut.omo.events.BrokenApplianceEvent;
 import cz.fel.cvut.omo.house.House;
 import cz.fel.cvut.omo.house.Room;
 import cz.fel.cvut.omo.objectPool.ResourcePool;
@@ -32,7 +33,7 @@ public class Simulation {
 
     private List<Activity> activities = new ArrayList<>();
 
-    private Random rand = new Random();
+    private transient Random rand = new Random();
 
     private PrintStream console;
 
@@ -290,11 +291,9 @@ public class Simulation {
      * Turn on all devices in the house
      * - for testing purposes
      */
-    public void turnOnAllDevices() {
+    private void turnOnAllDevices() {
         house.getFloors().forEach(floor -> floor.getRooms()
                 .forEach(room -> room.getAppliances()
                         .forEach(Appliance::turnOn)));
     }
-
-
 }
