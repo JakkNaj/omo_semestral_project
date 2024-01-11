@@ -64,18 +64,18 @@ public class Main {
                 addCreatures(house.getAllRooms());
                 break;
         }
-        if (house == null)
-            System.out.println("Failed to load house from JSON");
-        else {
-            //simulate(house);
-        }
-
         if (save) {
             if (run == 3 || run == 1) {
                 house.serializeToJson("houseConfig02.json");
             } else {
                 house.serializeToJson("houseConfig01.json");
             }
+        }
+
+        if (house == null)
+            System.out.println("Failed to load house from JSON");
+        else {
+            simulate(house);
         }
     }
 
@@ -163,6 +163,9 @@ public class Main {
         House house = houseBuilder.addFloor(
                         floorBuilder.addRoom(
                                         roomBuilderLivingR.addAppliance(new TelevisionImpl(Arrays.asList(100.0, 0.0, 0.0)))
+                                                .addWindow(new WindowBuilder().addBlinds().build())
+                                                .addWindow(new WindowBuilder().addBlinds().build())
+                                                .addWindow(new WindowBuilder().build())
                                                 .addAppliance(new PlaystationImpl(Arrays.asList(80.0, 0.0, 0.0)))
                                                 .addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
                                                 .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
@@ -197,6 +200,8 @@ public class Main {
                 .addFloor(
                         floorBuilder1.addRoom(
                                         roomBuilderKitchen.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
+                                                .addWindow(new WindowBuilder().addBlinds().build())
+                                                .addWindow(new WindowBuilder().build())
                                                 .addAppliance(new FridgeImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                                 .addAppliance(new WashingMachineImpl(Arrays.asList(100.0, 100.0, 0.0)))
                                                 .addAppliance(new CoffeeMachineImpl(Arrays.asList(20.0, 20.0, 0.0)))
@@ -210,6 +215,7 @@ public class Main {
                                                 .build())
                                 .addRoom(
                                         roomBuilderBedroom.addAppliance(new LightingImpl(Arrays.asList(50.0, 0.0, 0.0)))
+                                                .addWindow(new WindowBuilder().addBlinds().build())
                                                 .addAppliance(new HeaterImpl(Arrays.asList(50.0, 0.0, 50.0)))
                                                 .addAppliance(new TelevisionImpl(Arrays.asList(100.0, 0.0, 0.0)))
                                                 .addAppliance(new PlaystationImpl(Arrays.asList(50.0, 0.0, 0.0)))
