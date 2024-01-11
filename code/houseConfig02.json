@@ -1,0 +1,992 @@
+{
+  "floors": [
+    {
+      "level": 0,
+      "rooms": [
+        {
+          "name": "Living room",
+          "temperature": 18,
+          "wantedTemperature": 24,
+          "deltaOfTemperature": 2,
+          "creatures": [
+            {
+              "firstName": "name_5",
+              "lastName": "lastname_5",
+              "type": "ELDER",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "firstName": "name_13",
+              "lastName": "lastname_13",
+              "type": "ELDER",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "name": "pet_5",
+              "type": "SNAKE",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            }
+          ],
+          "doors": [
+            {
+              "closed": true,
+              "secondRoom": "Living room",
+              "firstRoom": "Garage",
+              "doorId": 312888000
+            },
+            {
+              "closed": true,
+              "secondRoom": "Movie room",
+              "firstRoom": "Living room",
+              "doorId": 312932000
+            }
+          ],
+          "windows": [],
+          "appliances": [
+            {
+              "wearTear": 29760,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                100.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "TelevisionImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                80.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "PlaystationImpl"
+            },
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "LightingImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                50.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "HeaterImpl"
+            },
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                60.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "TreadmillImpl"
+            },
+            {
+              "coffeeRatio": 0.0,
+              "waterRatio": 0.0,
+              "coffeeMachineState": "NEEDS_COFFEE",
+              "wearTear": 8760,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                20.0,
+                20.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "CoffeeMachineImpl"
+            }
+          ],
+          "vehicles": []
+        },
+        {
+          "name": "Garage",
+          "temperature": 18,
+          "wantedTemperature": 15,
+          "deltaOfTemperature": 5,
+          "creatures": [
+            {
+              "firstName": "name_0",
+              "lastName": "lastname_0",
+              "type": "BABY",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "firstName": "name_8",
+              "lastName": "lastname_8",
+              "type": "ADULT",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "name": "pet_0",
+              "type": "PARROT",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            },
+            {
+              "name": "pet_8",
+              "type": "DOG",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            }
+          ],
+          "doors": [
+            {
+              "closed": true,
+              "secondRoom": "Living room",
+              "firstRoom": "Garage",
+              "doorId": 312888000
+            },
+            {
+              "closed": true,
+              "secondRoom": "Garden",
+              "firstRoom": "Garage",
+              "doorId": 312912000
+            }
+          ],
+          "windows": [
+            {
+              "id": 42853,
+              "blinds": {
+                "state": "closed"
+              }
+            }
+          ],
+          "appliances": [
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                60.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "TreadmillImpl"
+            }
+          ],
+          "vehicles": [
+            {
+              "name": "Mustang",
+              "wheals": 4,
+              "capacity": 5,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Car"
+            },
+            {
+              "name": "BMW",
+              "wheals": 4,
+              "capacity": 5,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Car"
+            },
+            {
+              "name": "VW",
+              "wheals": 4,
+              "capacity": 5,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Car"
+            },
+            {
+              "name": "Detske",
+              "wheals": 2,
+              "capacity": 1,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Bicycle"
+            },
+            {
+              "name": "Damske",
+              "wheals": 2,
+              "capacity": 1,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Bicycle"
+            },
+            {
+              "name": "Panske",
+              "wheals": 2,
+              "capacity": 1,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Bicycle"
+            },
+            {
+              "name": "Lyze",
+              "wheals": 0,
+              "capacity": 1,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Ski"
+            },
+            {
+              "name": "Snowboard",
+              "wheals": 0,
+              "capacity": 1,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Ski"
+            },
+            {
+              "name": "Detske",
+              "wheals": 0,
+              "capacity": 1,
+              "inUse": false,
+              "broken": false,
+              "ObjectType": "Ski"
+            }
+          ]
+        },
+        {
+          "name": "Garden",
+          "temperature": 18,
+          "wantedTemperature": 0,
+          "deltaOfTemperature": 100,
+          "creatures": [
+            {
+              "firstName": "name_2",
+              "lastName": "lastname_2",
+              "type": "ADULT",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "firstName": "name_10",
+              "lastName": "lastname_10",
+              "type": "ADULT",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "name": "pet_2",
+              "type": "DOG",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            }
+          ],
+          "doors": [
+            {
+              "closed": true,
+              "secondRoom": "Garden",
+              "firstRoom": "Garage",
+              "doorId": 312912000
+            }
+          ],
+          "windows": [],
+          "appliances": [],
+          "vehicles": []
+        },
+        {
+          "name": "Movie room",
+          "temperature": 18,
+          "wantedTemperature": 19,
+          "deltaOfTemperature": 4,
+          "creatures": [
+            {
+              "firstName": "name_6",
+              "lastName": "lastname_6",
+              "type": "ADULT",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "firstName": "name_14",
+              "lastName": "lastname_14",
+              "type": "ADULT",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "name": "pet_6",
+              "type": "DOG",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            }
+          ],
+          "doors": [
+            {
+              "closed": true,
+              "secondRoom": "Movie room",
+              "firstRoom": "Living room",
+              "doorId": 312932000
+            }
+          ],
+          "windows": [],
+          "appliances": [
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                25.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "LightingImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                50.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "HeaterImpl"
+            },
+            {
+              "wearTear": 29760,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                100.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "TelevisionImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "PlaystationImpl"
+            }
+          ],
+          "vehicles": []
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "rooms": [
+        {
+          "name": "Kitchen",
+          "temperature": 18,
+          "wantedTemperature": 23,
+          "deltaOfTemperature": 3,
+          "creatures": [
+            {
+              "firstName": "name_4",
+              "lastName": "lastname_4",
+              "type": "ADULT",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "firstName": "name_12",
+              "lastName": "lastname_12",
+              "type": "ADULT",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "name": "pet_4",
+              "type": "DOG",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            }
+          ],
+          "doors": [
+            {
+              "closed": true,
+              "secondRoom": "Hallway",
+              "firstRoom": "Kitchen",
+              "doorId": 313559000
+            }
+          ],
+          "windows": [],
+          "appliances": [
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "LightingImpl"
+            },
+            {
+              "wearTear": 43800,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                100.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "FridgeImpl"
+            },
+            {
+              "loaded": false,
+              "wearTear": 69120,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                100.0,
+                100.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "WashingMachineImpl"
+            },
+            {
+              "coffeeRatio": 0.0,
+              "waterRatio": 0.0,
+              "coffeeMachineState": "NEEDS_COFFEE",
+              "wearTear": 8760,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                20.0,
+                20.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "CoffeeMachineImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                50.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "HeaterImpl"
+            }
+          ],
+          "vehicles": []
+        },
+        {
+          "name": "Bathroom",
+          "temperature": 18,
+          "wantedTemperature": 20,
+          "deltaOfTemperature": 2,
+          "creatures": [
+            {
+              "firstName": "name_7",
+              "lastName": "lastname_7",
+              "type": "ELDER",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "firstName": "name_15",
+              "lastName": "lastname_15",
+              "type": "ELDER",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "name": "pet_7",
+              "type": "SNAKE",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            }
+          ],
+          "doors": [
+            {
+              "closed": true,
+              "secondRoom": "Hallway",
+              "firstRoom": "Bathroom",
+              "doorId": 313575000
+            }
+          ],
+          "windows": [],
+          "appliances": [
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "LightingImpl"
+            },
+            {
+              "wearTear": 43800,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                100.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "FridgeImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                50.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "HeaterImpl"
+            },
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                60.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "TreadmillImpl"
+            }
+          ],
+          "vehicles": []
+        },
+        {
+          "name": "Bedroom",
+          "temperature": 18,
+          "wantedTemperature": 21,
+          "deltaOfTemperature": 1,
+          "creatures": [
+            {
+              "firstName": "name_1",
+              "lastName": "lastname_1",
+              "type": "CHILD",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "firstName": "name_9",
+              "lastName": "lastname_9",
+              "type": "ELDER",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "name": "pet_1",
+              "type": "CAT",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            },
+            {
+              "name": "pet_9",
+              "type": "SNAKE",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            }
+          ],
+          "doors": [
+            {
+              "closed": true,
+              "secondRoom": "Hallway",
+              "firstRoom": "Bedroom",
+              "doorId": 313570000
+            }
+          ],
+          "windows": [],
+          "appliances": [
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "LightingImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                50.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "HeaterImpl"
+            },
+            {
+              "wearTear": 29760,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                100.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "TelevisionImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "PlaystationImpl"
+            }
+          ],
+          "vehicles": []
+        },
+        {
+          "name": "Hallway",
+          "temperature": 18,
+          "wantedTemperature": 19,
+          "deltaOfTemperature": 4,
+          "creatures": [
+            {
+              "firstName": "name_3",
+              "lastName": "lastname_3",
+              "type": "CHILD",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "firstName": "name_11",
+              "lastName": "lastname_11",
+              "type": "ELDER",
+              "todoActivities": [],
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Person"
+            },
+            {
+              "name": "pet_3",
+              "type": "CAT",
+              "alive": true,
+              "age": 0,
+              "sleeping": false,
+              "ObjectType": "Animal"
+            }
+          ],
+          "doors": [
+            {
+              "closed": true,
+              "secondRoom": "Hallway",
+              "firstRoom": "Kitchen",
+              "doorId": 313559000
+            },
+            {
+              "closed": true,
+              "secondRoom": "Hallway",
+              "firstRoom": "Bedroom",
+              "doorId": 313570000
+            },
+            {
+              "closed": true,
+              "secondRoom": "Hallway",
+              "firstRoom": "Bathroom",
+              "doorId": 313575000
+            }
+          ],
+          "windows": [],
+          "appliances": [
+            {
+              "wearTear": 4320,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                25.0,
+                0.0,
+                0.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "LightingImpl"
+            },
+            {
+              "wearTear": 70080,
+              "state": {
+                "stateType": "OffState"
+              },
+              "consumption": [
+                50.0,
+                0.0,
+                50.0
+              ],
+              "sumConsumption": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "manual": "repair manual for appliance",
+              "ObjectType": "HeaterImpl"
+            }
+          ],
+          "vehicles": []
+        }
+      ]
+    }
+  ]
+}

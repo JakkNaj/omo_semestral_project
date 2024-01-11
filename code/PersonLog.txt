@@ -1,4 +1,0 @@
-Person name_4 lastname_4 accepted LowTemperatureEvent{where='Garage', reason='too cold'}
-Person name_3 lastname_3 accepted LowTemperatureEvent{where='Garage', reason='too cold'}
-Person name_0 lastname_0 accepted LowTemperatureEvent{where='Garage', reason='too cold'}
-
