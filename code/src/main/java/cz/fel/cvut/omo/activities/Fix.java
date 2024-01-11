@@ -45,4 +45,8 @@ public class Fix extends ApplianceActivity{
     public Appliance getNewAppliance(){
         return ApplianceFactory.createAppliance(appliance.getClass().getSimpleName(), appliance.getCurrentConsumption());
     }
+
+    public void initRandom(){
+        random = new Random();
+    }
 }

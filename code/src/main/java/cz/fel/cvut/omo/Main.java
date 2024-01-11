@@ -34,7 +34,7 @@ public class Main {
 
     // One iteration is one hour
     private static final int ITERATIONS = 24 * 10;
-    private static final int run = 1;
+    private static final int run = 2;
     private static final boolean save = true;
     private static final String CONFIGURATION = "houseConfig01.json";
 

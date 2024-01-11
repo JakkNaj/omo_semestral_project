@@ -1,0 +1,61 @@
+Appliance statistics:
+Light - Room{Living room2}:
+	Person{name_1 ,lastname_1 - CHILD}: 1
+	Person{name_5 ,lastname_5 - ELDER}: 3
+	Person{name_4 ,lastname_4 - ADULT}: 1
+Coffee machine - Room{Kitchen}:
+	Animal{name='pet_1', type=PARROT}: 1
+	Person{name_2 ,lastname_2 - ADULT}: 2
+	Animal{name='pet_0', type=CAT}: 1
+	Person{name_4 ,lastname_4 - ADULT}: 1
+Light - Room{Kitchen}:
+	Person{name_2 ,lastname_2 - ADULT}: 2
+Fridge - Room{Kitchen}:
+	Person{name_3 ,lastname_3 - ELDER}: 1
+	Person{name_0 ,lastname_0 - BABY}: 1
+Washing machine - Room{Kitchen}:
+	Person{name_2 ,lastname_2 - ADULT}: 1
+Heater - Room{Bedroom}:
+	Animal{name='pet_1', type=PARROT}: 1
+	Person{name_2 ,lastname_2 - ADULT}: 1
+Heater - Room{Living room2}:
+	Animal{name='pet_1', type=PARROT}: 1
+	Person{name_0 ,lastname_0 - BABY}: 1
+Heater - Room{Living room}:
+	Animal{name='pet_1', type=PARROT}: 1
+	Animal{name='pet_0', type=CAT}: 1
+Television - Room{Living room}:
+	Animal{name='pet_2', type=DOG}: 1
+	Person{name_4 ,lastname_4 - ADULT}: 1
+Playstation - Room{Bedroom}:
+	Person{name_0 ,lastname_0 - BABY}: 1
+	Person{name_5 ,lastname_5 - ELDER}: 1
+Treadmill - Room{Living room}:
+	Animal{name='pet_1', type=PARROT}: 1
+	Person{name_1 ,lastname_1 - CHILD}: 1
+	Person{name_2 ,lastname_2 - ADULT}: 1
+Television - Room{Bedroom}:
+	Animal{name='pet_1', type=PARROT}: 1
+	Person{name_0 ,lastname_0 - BABY}: 1
+Light - Room{Living room}:
+	Person{name_1 ,lastname_1 - CHILD}: 1
+	Animal{name='pet_0', type=CAT}: 1
+Fridge - Room{Living room2}:
+	Animal{name='pet_1', type=PARROT}: 1
+Light - Room{Bedroom}:
+	Person{name_1 ,lastname_1 - CHILD}: 1
+	Person{name_0 ,lastname_0 - BABY}: 1
+	Person{name_2 ,lastname_2 - ADULT}: 2
+Coffee machine - Room{Bedroom}:
+	Person{name_3 ,lastname_3 - ELDER}: 1
+	Person{name_2 ,lastname_2 - ADULT}: 2
+Playstation - Room{Living room}:
+	Animal{name='pet_1', type=PARROT}: 1
+	Person{name_0 ,lastname_0 - BABY}: 1
+	Person{name_2 ,lastname_2 - ADULT}: 1
+Heater - Room{Kitchen}:
+	Animal{name='pet_1', type=PARROT}: 1
+	Person{name_0 ,lastname_0 - BABY}: 1
+	Person{name_4 ,lastname_4 - ADULT}: 1
+Treadmill - Room{Garage}:
+	Person{name_0 ,lastname_0 - BABY}: 2

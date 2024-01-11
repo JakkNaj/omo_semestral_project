@@ -3,15 +3,14 @@ package cz.fel.cvut.omo.house;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import cz.fel.cvut.omo.activities.Activity;
+import cz.fel.cvut.omo.activities.Fix;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.appliances.heater.HeaterImpl;
 import cz.fel.cvut.omo.appliances.states.ApplianceState;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.creature.person.Person;
-import cz.fel.cvut.omo.json.deserializer.ApplianceListDeserializer;
-import cz.fel.cvut.omo.json.deserializer.ApplianceStateDeserializer;
-import cz.fel.cvut.omo.json.deserializer.CreatureListDeserializer;
-import cz.fel.cvut.omo.json.deserializer.VehicleListDeserializer;
+import cz.fel.cvut.omo.json.deserializer.*;
 import cz.fel.cvut.omo.json.serializer.*;
 import cz.fel.cvut.omo.report.ReportVisitor;
 import cz.fel.cvut.omo.vehicles.Vehicle;
@@ -58,6 +57,8 @@ public class House {
                 }.getType(), new VehicleListDeserializer())
                 .registerTypeAdapter(new TypeToken<ApplianceState>() {
                 }.getType(), new ApplianceStateDeserializer())
+                .registerTypeAdapter(new TypeToken<List<Activity>>() {
+                }.getType(), new ActivityDeserializer())
                 .create();
 
 
@@ -129,9 +130,19 @@ public class House {
     private static void initRandom() {
         House.INSTANCE.floors.forEach(floor -> {
             floor.getRooms().forEach(room -> {
-                room.getCreatures().forEach(Creature::initRandom);
+                room.getCreatures().forEach(creature -> {
+                    creature.initRandom();
+                    if (creature instanceof Person){
+                        ((Person) creature).getTodoActivities().forEach(activity -> {
+                            if (activity instanceof Fix){
+                                ((Fix) activity).initRandom();
+                            }
+                        });
+                    }
+                });
             });
         });
+
     }
 
 
@@ -148,6 +159,8 @@ public class House {
                 }.getType(), new VehicleListSerializer())
                 .registerTypeAdapter(new TypeToken<ApplianceState>() {
                 }.getType(), new ApplianceStateSerializer())
+                .registerTypeAdapter(new TypeToken<List<Activity>>() {
+                }.getType(), new ActivitySerializer())
                 .create();
 
 

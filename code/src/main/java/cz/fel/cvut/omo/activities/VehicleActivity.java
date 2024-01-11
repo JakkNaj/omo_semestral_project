@@ -6,6 +6,7 @@ import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.house.House;
 import cz.fel.cvut.omo.vehicles.Vehicle;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +14,11 @@ import java.util.Map;
 /**
  * Class representing an interaction of Person/Creature with a Vehicle
  */
-public class VehicleActivity extends Activity {
+public class    VehicleActivity extends Activity {
+
     @Getter
-    protected final Vehicle vehicle;
+    @Setter
+    protected transient final Vehicle vehicle;
 
     protected static final Map<Vehicle,Map<Creature, Integer>> statistics = new HashMap<>();
 
