@@ -24,7 +24,7 @@ public abstract class Appliance implements ApplianceContext {
 
     private List<Double> sumConsumption = new ArrayList<>();
 
-    protected List<Runnable> actions = new ArrayList<>();
+    protected transient List<Runnable> actions = new ArrayList<>();
 
     @Getter
     private final String manual = "repair manual for appliance";
@@ -139,5 +139,10 @@ public abstract class Appliance implements ApplianceContext {
     @Override
     public String toString() {
         return this.getType() + " - " + House.getInstance().getApplianceRoom(this);
+    }
+
+
+    public void configureRunnableActions() {
+        actions = new ArrayList<>();
     }
 }

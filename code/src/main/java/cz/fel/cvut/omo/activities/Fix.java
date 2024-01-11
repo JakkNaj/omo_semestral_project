@@ -2,6 +2,8 @@ package cz.fel.cvut.omo.activities;
 
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.appliances.ApplianceFactory;
+import cz.fel.cvut.omo.appliances.states.ApplianceState;
+import cz.fel.cvut.omo.appliances.states.BrokenState;
 import cz.fel.cvut.omo.creature.Creature;
 import lombok.Getter;
 
@@ -14,7 +16,7 @@ public class Fix extends ApplianceActivity{
     @Getter
     private Boolean fixable;
 
-    private Random random = new Random();
+    private transient Random random = new Random();
 
     public Fix(Creature creature, Appliance appliance) {
         super(creature, appliance, 200);
@@ -22,6 +24,10 @@ public class Fix extends ApplianceActivity{
 
     @Override
     public void iterate() {
+        if (!(this.appliance.getState() instanceof BrokenState)){
+            //finish the activity, since the appliance has been already repaired by someone else
+            timeOfUse = timeOfActivity;
+        }
         if (timeOfUse == 0){
             manual = appliance.getManual();
             fixable = knowsHowToRepairIt();
@@ -38,5 +44,9 @@ public class Fix extends ApplianceActivity{
 
     public Appliance getNewAppliance(){
         return ApplianceFactory.createAppliance(appliance.getClass().getSimpleName(), appliance.getCurrentConsumption());
+    }
+
+    public void initRandom(){
+        random = new Random();
     }
 }

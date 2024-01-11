@@ -1,0 +1,49 @@
+Report visitor visiting house:
+Report visitor visiting floor 0:
+Report visitor visiting room Living room:
+Television: [4660.0, 0.0, 0.0]  state: BROKEN
+
+Playstation: [3032.0, 0.0, 0.0]  state: BROKEN
+
+Light: [200.0, 0.0, 0.0]  state: OFF
+
+Heater: [6150.0, 0.0, 6150.0]  state: ON
+
+Treadmill: [300.0, 0.0, 0.0]  state: OFF
+
+Report visitor visiting room Garage:
+Treadmill: [240.0, 0.0, 0.0]  state: OFF
+
+Report visitor visiting room Outside:
+Report visitor visiting floor 1:
+Report visitor visiting room Kitchen:
+Light: [100.0, 0.0, 0.0]  state: OFF
+
+Fridge: [300.0, 0.0, 0.0]  state: OFF
+
+Washing machine: [200.0, 200.0, 0.0]  state: OFF
+
+Coffee machine: [140.0, 140.0, 0.0]  state: OFF
+
+Heater: [6100.0, 0.0, 6100.0]  state: OFF
+
+Report visitor visiting room Living room2:
+Light: [2300.0, 0.0, 0.0]  state: BROKEN
+
+Fridge: [0.0, 0.0, 0.0]  state: OFF
+
+Heater: [6150.0, 0.0, 6150.0]  state: OFF
+
+Treadmill: [0.0, 0.0, 0.0]  state: OFF
+
+Report visitor visiting room Bedroom:
+Light: [1820.0, 0.0, 0.0]  state: BROKEN
+
+Heater: [6000.0, 0.0, 6000.0]  state: ON
+
+Television: [2310.0, 0.0, 0.0]  state: IDLE
+
+Playstation: [1145.0, 0.0, 0.0]  state: IDLE
+
+Coffee machine: [60.0, 60.0, 0.0]  state: OFF
+

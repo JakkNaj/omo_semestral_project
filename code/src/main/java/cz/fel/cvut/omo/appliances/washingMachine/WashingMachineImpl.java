@@ -3,6 +3,7 @@ package cz.fel.cvut.omo.appliances.washingMachine;
 import cz.fel.cvut.omo.appliances.Appliance;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WashingMachineImpl extends Appliance implements WashingMachine {
@@ -12,8 +13,7 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
 
     public WashingMachineImpl(List<Double> consumption) {
         super(consumption, 360 * 8 * 24);
-        actions.add(this::load);
-        actions.add(this::wash);
+        configureRunnableActions();
     }
 
     @Override
@@ -33,5 +33,12 @@ public class WashingMachineImpl extends Appliance implements WashingMachine {
     @Override
     public String getType() {
         return "Washing machine";
+    }
+
+    @Override
+    public void configureRunnableActions() {
+        actions = new ArrayList<>();
+        actions.add(this::load);
+        actions.add(this::wash);
     }
 }

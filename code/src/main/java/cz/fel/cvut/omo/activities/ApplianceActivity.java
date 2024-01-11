@@ -4,6 +4,7 @@ import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.appliances.states.BrokenState;
 import cz.fel.cvut.omo.creature.Creature;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,8 @@ import java.util.Map;
 public class ApplianceActivity extends Activity {
 
     @Getter
-    protected final Appliance appliance;
+    @Setter
+    protected transient final Appliance appliance;
 
     protected static final Map<Appliance,Map<Creature, Integer>> statistics = new HashMap<>();
 

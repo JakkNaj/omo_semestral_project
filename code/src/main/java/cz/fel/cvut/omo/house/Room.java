@@ -1,5 +1,6 @@
 package cz.fel.cvut.omo.house;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import cz.fel.cvut.omo.activities.Activity;
 import cz.fel.cvut.omo.appliances.Appliance;
 import cz.fel.cvut.omo.appliances.heater.Heater;
@@ -45,7 +46,7 @@ public class Room implements Observable {
     @Getter
     private final List<Appliance> appliances;
 
-    private final List<Observer> observers = new ArrayList<>();
+    private transient List<Observer> observers = new ArrayList<>();
 
     @Getter
     private final List<Vehicle> vehicles = new ArrayList<>();
@@ -95,6 +96,8 @@ public class Room implements Observable {
 
     @Override
     public void subscribe(Observer observer) {
+        if (observers == null)
+            observers = new ArrayList<>();
         observers.add(observer);
     }
 
@@ -183,5 +186,21 @@ public class Room implements Observable {
     @Override
     public String toString() {
         return "Room{" + this.getName() + "}";
+    }
+
+    public boolean hasDoorWithId(int id){
+        for (Door door:doors){
+            if(door.getId() == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeDoors(){
+        List<Door> doors2 = new ArrayList<>(doors);
+        for (Door door: doors2){
+            doors.remove(door);
+        }
     }
 }

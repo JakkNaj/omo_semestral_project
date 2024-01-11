@@ -1,0 +1,22 @@
+Vehicle statistics:
+bicycle:
+	Person{name_1 ,lastname_1 - CHILD}: 1
+	Person{name_0 ,lastname_0 - BABY}: 2
+	Person{name_5 ,lastname_5 - ELDER}: 1
+	Animal{name='pet_0', type=CAT}: 2
+	Animal{name='pet_2', type=DOG}: 1
+car:
+	Person{name_3 ,lastname_3 - ELDER}: 3
+	Animal{name='pet_1', type=PARROT}: 3
+	Person{name_0 ,lastname_0 - BABY}: 6
+	Person{name_2 ,lastname_2 - ADULT}: 2
+	Animal{name='pet_0', type=CAT}: 1
+bicycle:
+	Animal{name='pet_1', type=PARROT}: 4
+	Person{name_3 ,lastname_3 - ELDER}: 1
+	Person{name_2 ,lastname_2 - ADULT}: 1
+skis:
+	Person{name_0 ,lastname_0 - BABY}: 1
+	Animal{name='pet_0', type=CAT}: 2
+	Person{name_5 ,lastname_5 - ELDER}: 1
+	Person{name_4 ,lastname_4 - ADULT}: 1

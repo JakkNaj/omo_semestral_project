@@ -6,6 +6,7 @@ import cz.fel.cvut.omo.appliances.states.BrokenState;
 import cz.fel.cvut.omo.creature.Creature;
 import cz.fel.cvut.omo.vehicles.Vehicle;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,8 @@ import java.util.Map;
 @Getter
 public abstract class Activity {
 
-    protected final Creature creature;
+    @Setter
+    protected transient final Creature creature;
 
     protected int timeOfUse;
 

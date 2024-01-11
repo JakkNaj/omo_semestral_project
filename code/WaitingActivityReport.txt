@@ -1,0 +1,7 @@
+Waiting statistics:
+Animal{name='pet_1', type=PARROT}: 1
+Person{name_1 ,lastname_1 - CHILD}: 2
+Person{name_0 ,lastname_0 - BABY}: 5
+Person{name_2 ,lastname_2 - ADULT}: 2
+Person{name_5 ,lastname_5 - ELDER}: 1
+Animal{name='pet_0', type=CAT}: 1
